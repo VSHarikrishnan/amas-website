@@ -1,0 +1,285 @@
+.upcoming-events-page {
+    padding: 2rem;
+    text-align: center;
+}
+
+/* .event-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #ff6600;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-top: 2px;
+} */
+
+.event-grid {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.trek-card {
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    background: white;
+}
+
+.trek-card:hover {
+    transform: scale(1.03);
+}
+
+.trek-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.trek-content {
+    padding: 1rem;
+}
+
+.trek-date {
+    font-weight: bold;
+    color: #444;
+    margin-top: 0.5rem;
+}
+
+.upcoming-events {
+
+    display: grid;
+    flex-direction: row;
+    align-items: center;
+}
+
+.upcoming-events {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    padding: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Restrict calendar size */
+.calendar-section {
+    flex: 0 0 320px;
+    /* Calendar won't stretch more than 320px */
+    max-width: 100%;
+}
+
+.calendar-section h2 {
+    margin-bottom: 1rem;
+}
+
+/* Make the cards section take the rest of the row */
+.event-cards-section {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 1rem;
+    padding-bottom: 1rem;
+}
+
+/* Limit card size */
+.trek-card {
+    flex: 0 0 300px;
+    height: auto;
+}
+
+.upcoming-events {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem;
+    align-items: flex-start;
+}
+
+.calendar-section {
+    flex: 0 0 320px;
+}
+
+.event-cards-section {
+    flex: 1;
+    overflow-x: auto;
+    position: relative;
+}
+
+.event-scroll-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scroll-snap-type: x mandatory;
+}
+
+.trek-card {
+    flex: 0 0 300px;
+    scroll-snap-align: start;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.trek-card:hover {
+    transform: scale(1.03);
+}
+
+.image-wrapper {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+}
+
+.trek-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 4px 8px;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.trek-details {
+    padding: 1rem;
+    text-align: left;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.location {
+    width: 70%;
+}
+
+.datetime {
+    width: 30%;
+    text-align: right;
+}
+
+.btn-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.info-btn,
+.date-btn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #272343;
+    color: white;
+    cursor: pointer;
+}
+
+.info-btn:hover,
+.date-btn:hover {
+    background-color: #4a47a3;
+}
+
+.no-events-text {
+    margin-top: 2rem;
+    font-style: italic;
+    color: gray;
+}
+
+.trek-card {
+    flex: 0 0 300px;
+    max-height: 360px;
+    scroll-snap-align: start;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.image-wrapper {
+    position: relative;
+    height: 120px;
+    overflow: hidden;
+}
+
+.trek-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.trek-details {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    overflow-y: auto;
+}
+
+.trek-details::-webkit-scrollbar {
+    width: 4px;
+}
+
+.trek-details::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.description {
+    font-size: 0.85rem;
+    color: #444;
+    max-height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    margin-top: 0.4rem;
+}
+
+.location {
+    width: 70%;
+}
+
+.datetime {
+    width: 30%;
+    text-align: right;
+    font-size: 0.75rem;
+    line-height: 1.2;
+}
+
+.btn-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.6rem;
+}
+
+.info-btn,
+.date-btn {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+}

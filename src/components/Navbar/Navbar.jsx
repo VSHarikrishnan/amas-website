@@ -1,16 +1,15 @@
 // src/components/Navbar/Navbar.jsx
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-scroll';
 import './navbar.css';
 
 const navItems = {
-    '/': 'Home',
-    '/treks': 'Treks',
-    '/gallery': 'Gallery',
-    '/events': 'Events',
-    '/contactus': 'Contact Us',
-    '/aboutus': 'About Us',
-    '/login': 'Login',
+    'landing': 'Home',
+    'treks': 'Treks',
+    'gallery': 'Gallery',
+    'events': 'Events',
+    'contactus': 'Contact Us',
+    'aboutus': 'About Us',
 };
 
 const Navbar = () => {
@@ -21,36 +20,52 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="navbar-container">
-                <NavLink to="/" className="logo">AMAS Kerala</NavLink>
-                <button className="menu-toggle" onClick={() => setIsOpen(!isOpen)}>
-                    ☰
-                </button>
+                <Link to="landing" smooth={true} duration={100} offset={-10} className="logo">
+                    AMAS Kerala
+                </Link>
+                <button className="menu-toggle" onClick={() => setIsOpen(!isOpen)}>☰</button>
 
-                {/* Horizontal Navbar (desktop/tablet only) */}
                 <ul className="nav-links-horizontal">
-                    {Object.entries(navItems).map(([path, label]) => (
-                        <li key={path}>
-                            <NavLink to={path} className={({ isActive }) => isActive ? 'active' : ''}>{label}</NavLink>
+                    {Object.entries(navItems).map(([section, label]) => (
+                        <li key={section}>
+                            <Link
+                                to={section}
+                                smooth={true}
+                                duration={500}
+                                offset={-60}
+                                onClick={handleNavClick}
+                                className="nav-link"
+                            >
+                                {label}
+                            </Link>
                         </li>
                     ))}
+                    <li>
+                        <a href="/login" className="nav-link">Login</a>
+                    </li>
                 </ul>
             </div>
 
-            {/* Sidebar (mobile only) */}
             {isOpen && (
                 <div className="sidebar">
                     <ul className="nav-links-vertical">
-                        {Object.entries(navItems).map(([path, label]) => (
-                            <li key={path}>
-                                <NavLink
-                                    to={path}
-                                    className={({ isActive }) => isActive ? 'active' : ''}
+                        {Object.entries(navItems).map(([section, label]) => (
+                            <li key={section}>
+                                <Link
+                                    to={section}
+                                    smooth={true}
+                                    duration={500}
+                                    offset={-60}
                                     onClick={handleNavClick}
+                                    className="nav-link"
                                 >
                                     {label}
-                                </NavLink>
+                                </Link>
                             </li>
                         ))}
+                        <li>
+                            <a href="/login" className="nav-link">Login</a>
+                        </li>
                     </ul>
                 </div>
             )}

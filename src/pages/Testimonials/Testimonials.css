@@ -1,0 +1,139 @@
+.testimonials-section {
+    padding: 2rem;
+    background-color: #f9f9f9;
+    text-align: center;
+    overflow: hidden;
+}
+
+.testimonials-section h2 {
+    margin-bottom: 2rem;
+    color: #272343;
+}
+
+.owl-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    transition: transform 0.5s ease;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    position: relative;
+}
+
+.owl-item {
+    transition: transform 0.5s ease, opacity 0.5s ease, filter 0.5s ease;
+    flex: 0 0 300px;
+    max-width: 300px;
+    opacity: 0.3;
+    transform: scale(0.9);
+    filter: blur(2px);
+    z-index: 0;
+}
+
+.owl-item.side {
+    opacity: 0.6;
+    transform: scale(0.95);
+    filter: blur(1px);
+    z-index: 1;
+}
+
+.owl-item.active {
+    opacity: 1;
+    transform: scale(1.05);
+    filter: none;
+    z-index: 2;
+}
+
+.item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    padding: 1.2rem;
+    height: 100%;
+}
+
+.shadow-effect {
+    padding: 1rem;
+}
+
+.test_holder {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.test_icon img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.test_name h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #272343;
+}
+
+.test_name p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.star_1 {
+    color: #fbbf24;
+    margin-top: 0.25rem;
+}
+
+.quotes img {
+    width: 25px;
+    margin-top: 0.5rem;
+}
+
+.test_desc {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: #333;
+    text-align: left;
+    max-height: 150px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.test_desc::-webkit-scrollbar {
+    width: 4px;
+}
+
+.test_desc::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+}
+
+@media (max-width: 768px) {
+    .owl-item {
+        flex: 0 0 80%;
+        max-width: 80%;
+    }
+}
+
+.title_all strong {
+    color: #E51A22;
+    font-weight: 500;
+}
+.title_all {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    font-size: 27px;
+    font-weight: 600;
+}
+body {
+    font-family: 'Inter', sans-serif;
+    background-image: url(../images/bg.jpg);
+    background-position: center top;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

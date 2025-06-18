@@ -24,8 +24,13 @@ const TrekGrid = () => {
                         <h3>{trek.name}</h3>
                         <p className="description">{trek.description}</p>
                         <div className="info-row">
-                            <span>📍 {trek.location}</span>
-                            <span>🕒 {trek.date} – {trek.time}</span>
+                            <div className="location">
+                                📍 {trek.location}
+                            </div>
+                            <div className="datetime">
+                                <div>{trek.date}</div>
+                                <div>{trek.time}</div>
+                            </div>
                         </div>
                         <div className="info-row">
                             <span>⛰️ {trek.difficulty}</span>
