@@ -7,6 +7,7 @@ import Treks from './pages/Treks/Treks';
 import Landing from './pages/LandingPage/Landing';
 import UpcomingEvents from './pages/Events/UpcomingEvents';
 import Testimonials from './pages/Testimonials/Testimonials';
+import Events from './pages/Events/Events';
 const App = () => {
   return (
     <div>
@@ -17,14 +18,11 @@ const App = () => {
       <section id="home">
         <Home />
       </section>
-      <section id="treks">
-        <Treks />
+      <section id="events">
+        <Events />
       </section>
       <section id="aboutus">
         <AboutUs />
-      </section>
-      <section id="events">
-        <UpcomingEvents />
       </section>
       {/* <section id="testimonials"> */}
       <Testimonials />

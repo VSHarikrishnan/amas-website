@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react';
-
 import './HomePage.css';
-
-
-
+import homeData from './HomeData'; // Assuming homeData is an array of objects with left_image, right_image, and icon properties
 
 const HomePage = () => {
     const [count, setCount] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
+    // Counter animation
     useEffect(() => {
         let start = 0;
         const end = 17;
-        const duration = 4000; // total duration in ms
-        const stepTime = Math.floor(duration / end); // how fast to count up
+        const duration = 4000;
+        const stepTime = Math.floor(duration / end);
         const timer = setInterval(() => {
             start += 1;
             setCount(start);
@@ -20,6 +19,18 @@ const HomePage = () => {
         }, stepTime);
         return () => clearInterval(timer);
     }, []);
+
+    // Image rotation
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndex(prev => (prev + 1) % homeData.length);
+        }, 5000); // ⏱ Change image every 5 seconds
+
+        return () => clearInterval(interval); // Clean up
+    }, []);
+
+    const selectedItem = homeData[currentIndex];
+
     return (
         <section className="about-section">
             <div className="container">
@@ -37,21 +48,20 @@ const HomePage = () => {
                         <h2 className="number">{count}<span>+</span></h2>
                         <h6>Safe & Thrilling Years</h6>
                     </div>
-
                 </div>
 
                 <div className="image-group">
                     <img
-                        src="https://amaskerala.org/assets/images/home/amas-quick/resized/rappeling.jpg"
-                        alt="Rappelling"
+                        src={selectedItem.left_image}
+                        alt="Left Adventure"
                         className="about-img-half"
                     />
                     <div className="icon-box center-icon">
-                        <i className="fas fa-campground"></i>
+                        <i className={selectedItem.icon}></i>
                     </div>
                     <img
-                        src="https://amaskerala.org/assets/images/home/amas-quick/resized/trampoulin.jpg"
-                        alt="Trampoline"
+                        src={selectedItem.right_image}
+                        alt="Right Adventure"
                         className="about-img-half"
                     />
                 </div>

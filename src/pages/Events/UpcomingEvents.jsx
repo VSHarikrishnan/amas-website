@@ -5,41 +5,6 @@ import 'react-calendar/dist/Calendar.css';
 import './UpcomingEvents.css';
 import treksData from '../Treks/TrekData';
 
-// const events = [
-//     {
-//         id: 1,
-//         date: '2025-06-18',
-//         name: 'Valley Crossing Event',
-//         description: 'Exciting rope valley crossing challenge.',
-//         image: 'https://images.unsplash.com/photo-1600788916142-e3b3d04b75bb?w=600',
-//         badge: 'Adventure',
-//         badgeColor: '#ff6600',
-//         location: 'Munnar, Kerala',
-//         time: '6:30 AM',
-//         difficulty: 'Moderate',
-//         duration: 1,
-//         likes: 95,
-//         comments: 12,
-//         rating: 4.5,
-//     },
-//     {
-//         id: 2,
-//         date: '2025-06-22',
-//         name: 'Meesapulimala Trek Meetup',
-//         description: 'Gathering for the upcoming trek preparations.',
-//         image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600',
-//         badge: 'Popular',
-//         badgeColor: '#2e8bc0',
-//         location: 'Kodaikanal, Tamil Nadu',
-//         time: '7:00 AM',
-//         difficulty: 'Easy',
-//         duration: 2,
-//         likes: 120,
-//         comments: 22,
-//         rating: 4.8,
-//     },
-// ];
-
 const UpcomingEvents = () => {
     const [selectedDate, setSelectedDate] = useState(null);
 
