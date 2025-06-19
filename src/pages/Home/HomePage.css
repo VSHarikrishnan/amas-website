@@ -1,0 +1,146 @@
+.about-section {
+    padding: 60px 0;
+    background: #fff;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    height: 70vh;
+    /* 70% of the viewport height */
+    max-width: 1140px;
+    margin: auto;
+    padding: 0 5%;
+    gap: 20px;
+}
+
+/* Text content box */
+.about-content-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.about-content-box h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #272343;
+}
+
+.about-content-box p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #484848;
+    margin-bottom: 20px;
+}
+
+.experience-box {
+    display: flex;
+    align-items: center;
+    margin-top: 0px;
+}
+
+.experience-box .number {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #00b34b;
+    margin: 5px 0;
+    margin-right: 15px;
+}
+
+.number {
+    transition: all 0.3s ease-in-out;
+}
+
+.experience-box h6 {
+    font-size: 1.2rem;
+    color: #222;
+    margin: 5px 0;
+}
+
+/* Image section */
+.image-group {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 100%;
+    position: relative;
+}
+
+/* .about-img-half {
+    width: 48%;
+    height: 100%;
+    object-fit: fill;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+
+} */
+.about-img-half {
+    width: 48%;
+    aspect-ratio: 1.8 / 3;
+    /* Maintain consistent shape */
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .8);
+}
+
+.icon-box.center-icon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #222;
+    padding: 15px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .about-content-box,
+    .image-group {
+        width: 100%;
+        height: auto;
+    }
+
+    .image-group {
+        flex-direction: row;
+        /* force row */
+        flex-wrap: nowrap;
+        /* prevent wrapping */
+        overflow-x: auto;
+        /* enable horizontal scroll if needed */
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 0;
+    }
+
+    .about-img-half {
+        width: 48%;
+        height: auto;
+        flex-shrink: 0;
+        /* prevent shrinking in scroll */
+    }
+
+    .icon-box.center-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

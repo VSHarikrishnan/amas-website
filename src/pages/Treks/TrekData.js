@@ -37,7 +37,7 @@ const treksData = [
         groupSize: 25,
         featured: false
     }, {
-        id: 2,
+        id: 3,
         name: 'Meesapulimala Trek',
         image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         location: 'Idukki, Kerala',
@@ -55,7 +55,7 @@ const treksData = [
         groupSize: 25,
         featured: false
     }, {
-        id: 2,
+        id: 4,
         name: 'Meesapulimala Trek',
         image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         location: 'Idukki, Kerala',
@@ -73,7 +73,7 @@ const treksData = [
         groupSize: 25,
         featured: false
     }, {
-        id: 2,
+        id: 5,
         name: 'Meesapulimala Trek',
         image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         location: 'Idukki, Kerala',
@@ -91,7 +91,7 @@ const treksData = [
         groupSize: 25,
         featured: false
     }, {
-        id: 2,
+        id: 6,
         name: 'Meesapulimala Trek',
         image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         location: 'Idukki, Kerala',
@@ -109,7 +109,7 @@ const treksData = [
         groupSize: 25,
         featured: false
     }, {
-        id: 2,
+        id: 7,
         name: 'Meesapulimala Trek',
         image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         location: 'Idukki, Kerala',
@@ -127,7 +127,7 @@ const treksData = [
         groupSize: 25,
         featured: false
     }, {
-        id: 2,
+        id: 8,
         name: 'Meesapulimala Trek',
         image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         location: 'Idukki, Kerala',
@@ -146,7 +146,7 @@ const treksData = [
         featured: false
     },
     {
-        id: 3,
+        id: 9,
         name: 'Agasthyakoodam Expedition',
         image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         location: 'Thiruvananthapuram, Kerala',
@@ -165,7 +165,7 @@ const treksData = [
         featured: true
     },
     {
-        id: 4,
+        id: 10,
         name: 'Chembra Peak Hike',
         image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         location: 'Wayanad, Kerala',
@@ -184,7 +184,7 @@ const treksData = [
         featured: false
     },
     {
-        id: 5,
+        id: 11,
         name: 'Anamudi Peak Trek',
         image: 'https://images.unsplash.com/photo-1542224566-6e85f2e6772f?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         location: 'Munnar, Kerala',
