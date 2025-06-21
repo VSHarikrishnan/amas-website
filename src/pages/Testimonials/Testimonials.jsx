@@ -37,9 +37,13 @@ const Testimonials = () => {
                 {testimonials.map((testimonial, index) => (
                     <div key={testimonial.id} className="testimonial-slide">
                         <div className={`item ${index === 1 ? 'active' : 'side'}`}>
-
                             <div className="shadow-effect">
-                                <div className="testimonial-date">{testimonial.date}</div>
+
+                                {/* ✅ Date Row */}
+                                <div className="testimonial-date-row">
+                                    <span className="testimonial-date">{testimonial.date}</span>
+                                </div>
+
                                 <div className="test_holder">
                                     <div className="test_icon">
                                         <img src={testimonial.image} alt={testimonial.name} />
@@ -54,6 +58,7 @@ const Testimonials = () => {
                                         </div>
                                     </div>
                                 </div>
+
                                 <div className="test_desc">
                                     <p>{testimonial.feedback}</p>
                                 </div>
@@ -62,6 +67,7 @@ const Testimonials = () => {
                     </div>
                 ))}
             </Slider>
+
         </div>
     );
 };

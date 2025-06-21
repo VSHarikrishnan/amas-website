@@ -10,6 +10,7 @@ import Testimonials from './pages/Testimonials/Testimonials';
 import Events from './pages/Events/Events';
 import WhyUs from './pages/WhyUs/WhyUs';
 import ContactUs from './pages/ContactUs/ContactUs';
+import FAB from './components/FloatingActionButton/FAB';
 const App = () => {
   return (
     <div>
@@ -35,9 +36,7 @@ const App = () => {
       <section id="contact-us">
         <ContactUs />
       </section>
-      <section id="testimonials">
-        <Testimonials />
-      </section>
+      <FAB />
     </div>
   );
 };
