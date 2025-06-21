@@ -26,7 +26,7 @@ const navItems = {
         'competitions': 'Competitions',
 
     },
-    'contactus': 'Contact Us',
-    'aboutus': 'About Us',
+    'contact-us': 'Contact Us',
+    'about-us': 'About Us',
 };
 export default navItems;

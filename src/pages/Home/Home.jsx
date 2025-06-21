@@ -9,7 +9,7 @@ const HomePage = () => {
     // Counter animation
     useEffect(() => {
         let start = 0;
-        const end = 17;
+        const end = 19;
         const duration = 4000;
         const stepTime = Math.floor(duration / end);
         const timer = setInterval(() => {
@@ -32,9 +32,9 @@ const HomePage = () => {
     const selectedItem = homeData[currentIndex];
 
     return (
-        <section className="about-section">
-            <div className="container">
-                <div className="about-content-box">
+        <section className="home-section">
+            <div className="home-container">
+                <div className="home-content-box">
                     <h2>Academy for Mountaineering and Adventure Sports</h2>
                     <p>
                         Since 2006, AMAS Kerala has been providing unparalleled programs
@@ -46,24 +46,28 @@ const HomePage = () => {
                     </p>
                     <div className="experience-box">
                         <h2 className="number">{count}<span>+</span></h2>
-                        <h6>Safe & Thrilling Years</h6>
+                   <h6 className="highlight-zoom">Safe & Thrilling Years</h6>
+
                     </div>
                 </div>
 
                 <div className="image-group">
                     <img
+                        key={selectedItem.left_image}
                         src={selectedItem.left_image}
                         alt="Left Adventure"
-                        className="about-img-half"
+                        className="home-img-half fade-image"
                     />
                     <div className="icon-box center-icon">
                         <i className={selectedItem.icon}></i>
                     </div>
                     <img
+                        key={selectedItem.right_image}
                         src={selectedItem.right_image}
                         alt="Right Adventure"
-                        className="about-img-half"
+                        className="home-img-half fade-image"
                     />
+
                 </div>
             </div>
         </section>

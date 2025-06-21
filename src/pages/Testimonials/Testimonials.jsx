@@ -1,38 +1,45 @@
-// src/components/Testimonials/Testimonials.jsx
-import React, { useState, useEffect } from 'react';
-import './Testimonials.css';
+import React from 'react';
+import Slider from 'react-slick';
 import testimonials from './TestimonialsData';
+import './Testimonials.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const Testimonials = () => {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const total = testimonials.length;
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setActiveIndex((prevIndex) => (prevIndex + 1) % total);
-        }, 4000);
-        return () => clearInterval(interval);
-    }, [total]);
-
-    const getVisibleTestimonials = () => {
-        const prev = (activeIndex - 1 + total) % total;
-        const next = (activeIndex + 1) % total;
-        return [prev, activeIndex, next].map(i => testimonials[i]);
-    };
-
-    const getClassName = (index) => {
-        if (index === 1) return 'owl-item active';      // middle
-        return 'owl-item side';                         // side elements
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        centerMode: true,
+        centerPadding: '0px',
+        autoplay: true,
+        autoplaySpeed: 2000,
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ],
     };
 
     return (
         <div className="testimonials-section">
-            <h2>What Our Trekkers Say</h2>
-            <div className="owl-carousel">
-                {getVisibleTestimonials().map((testimonial, i) => (
-                    <div key={testimonial.id} className={getClassName(i)}>
-                        <div className="item">
+            <h2 className="section-heading">
+                What Our <span className="highlight">Trekkers</span> Say!
+            </h2>
+
+            <Slider {...settings}>
+                {testimonials.map((testimonial, index) => (
+                    <div key={testimonial.id} className="testimonial-slide">
+                        <div className={`item ${index === 1 ? 'active' : 'side'}`}>
+
                             <div className="shadow-effect">
+                                <div className="testimonial-date">{testimonial.date}</div>
                                 <div className="test_holder">
                                     <div className="test_icon">
                                         <img src={testimonial.image} alt={testimonial.name} />
@@ -46,12 +53,6 @@ const Testimonials = () => {
                                             ))}
                                         </div>
                                     </div>
-                                    <div className="quotes">
-                                        <img
-                                            src="https://www.trekkersofindia.com/frontend/images/quotes.png"
-                                            alt="quote"
-                                        />
-                                    </div>
                                 </div>
                                 <div className="test_desc">
                                     <p>{testimonial.feedback}</p>
@@ -60,7 +61,7 @@ const Testimonials = () => {
                         </div>
                     </div>
                 ))}
-            </div>
+            </Slider>
         </div>
     );
 };

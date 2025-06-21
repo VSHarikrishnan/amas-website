@@ -2,59 +2,56 @@
     padding: 2rem;
     background-color: #f9f9f9;
     text-align: center;
-    overflow: hidden;
 }
 
-.testimonials-section h2 {
-    margin-bottom: 2rem;
+.section-heading {
+    font-size: 2.5rem;
     color: #272343;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: 600;
+    margin-bottom: 2rem;
 }
 
-.owl-carousel {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-    transition: transform 0.5s ease;
-    flex-wrap: nowrap;
-    overflow: hidden;
-    position: relative;
+.section-heading .highlight {
+    font-weight: 700;
+    color: #3e3b85;
 }
 
-.owl-item {
-    transition: transform 0.5s ease, opacity 0.5s ease, filter 0.5s ease;
-    flex: 0 0 300px;
-    max-width: 300px;
-    opacity: 0.3;
-    transform: scale(0.9);
-    filter: blur(2px);
-    z-index: 0;
-}
-
-.owl-item.side {
-    opacity: 0.6;
-    transform: scale(0.95);
-    filter: blur(1px);
-    z-index: 1;
-}
-
-.owl-item.active {
-    opacity: 1;
-    transform: scale(1.05);
-    filter: none;
-    z-index: 2;
+.testimonial-slide {
+    padding: 1rem;
+    height: 40vh;
+    transition: transform 0.5s ease, filter 0.5s ease;
 }
 
 .item {
-    background-color: white;
+    background: white;
     border-radius: 10px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     padding: 1.2rem;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 30vh;
+    max-height: 40vh;
 }
 
 .shadow-effect {
-    padding: 1rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.testimonial-date {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: #555;
+    opacity: 0.8;
 }
 
 .test_holder {
@@ -74,6 +71,7 @@
     margin: 0;
     font-size: 1.1rem;
     color: #272343;
+    font-family: 'Inter', sans-serif;
 }
 
 .test_name p {
@@ -87,19 +85,15 @@
     margin-top: 0.25rem;
 }
 
-.quotes img {
-    width: 25px;
-    margin-top: 0.5rem;
-}
-
 .test_desc {
     margin-top: 1rem;
     font-size: 0.95rem;
     color: #333;
     text-align: left;
-    max-height: 150px;
+    max-height: 140px;
     overflow-y: auto;
     padding-right: 5px;
+    flex-grow: 1;
 }
 
 .test_desc::-webkit-scrollbar {
@@ -111,29 +105,78 @@
     border-radius: 3px;
 }
 
-@media (max-width: 768px) {
-    .owl-item {
-        flex: 0 0 80%;
-        max-width: 80%;
-    }
+/* Highlight Center Card */
+.slick-center .testimonial-slide {
+    transform: scale(1.05);
+    filter: none;
+    z-index: 2;
 }
 
-.title_all strong {
-    color: #E51A22;
-    font-weight: 500;
+.slick-slide:not(.slick-center) .testimonial-slide {
+    transform: scale(0.95);
+    filter: blur(1px);
+    opacity: 0.6;
 }
-.title_all {
-    text-align: center;
-    margin-bottom: 40px;
-    position: relative;
-    font-size: 27px;
-    font-weight: 600;
-}
-body {
-    font-family: 'Inter', sans-serif;
-    background-image: url(../images/bg.jpg);
-    background-position: center top;
-    background-attachment: fixed;
-    background-size: cover;
-    background-repeat: no-repeat;
+
+/* Responsive View */
+@media (max-width: 768px) {
+    .testimonial-slide {
+        padding: 0.5rem;
+
+    }
+
+    .item {
+        width: 100%;
+        max-width: 80vw;
+        min-height: 30vh;
+        max-height: 50vh;
+        overflow: hidden;
+    }
+
+    .test_desc {
+        font-size: 0.9rem;
+        max-height: 100px;
+        padding-right: 0.3rem;
+    }
+
+    .test_name h3 {
+        font-size: 1rem;
+    }
+
+    .test_name p {
+        font-size: 0.85rem;
+    }
+
+    .testimonials-section {
+        padding: 1rem;
+        margin: .5rem;
+    }
+
+    .testimonial-date {
+        position: absolute;
+        top: 65px;
+        right: 45px;
+        font-style: italic;
+        font-size: 0.85rem;
+        color: #555;
+        opacity: 0.8;
+    }
+
+    .section-heading {
+        font-size: 2rem;
+        padding: .2rem;
+        margin: 0;
+    }
+
+    .slick-center .testimonial-slide {
+        transform: scale(1.05);
+        filter: none;
+        z-index: 2;
+    }
+
+    .slick-slide:not(.slick-center) .testimonial-slide {
+        transform: scale(1.05);
+        filter: none;
+        z-index: 2;
+    }
 }

@@ -1,0 +1,77 @@
+.why-trust-us-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.why-trust-image-section {
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1s ease-in-out;
+}
+
+.why-trust-content-section {
+    padding: 4rem 3rem;
+    background-color: #fff;
+    overflow-y: auto;
+}
+
+.why-trust-heading {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #272343;
+}
+
+.why-trust-heading strong {
+    font-weight: bold;
+    color: #1b1b1b;
+}
+
+.reasons-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.reason-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.reason-icon {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.reason-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 0.3rem;
+}
+
+.reason-subcontent {
+    font-size: 1rem;
+    color: #555;
+}
+@media (max-width: 768px) {
+    .why-trust-us-container {
+        display: block;
+        height: auto;
+    }
+
+    .why-trust-image-section {
+        height: 40vh;
+    }
+
+    .why-trust-content-section {
+        max-height: none;
+        overflow-y: visible;
+        padding: 0rem 1.5rem;
+    }
+}

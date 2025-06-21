@@ -98,7 +98,7 @@ const Navbar = () => {
 
                     <Link to="landing" smooth={true} duration={1000} offset={-10} className="logo">
                         <img
-                            src="https://amaskerala.org/assets/images/logo/amas-logo-text-black.png"
+                            src="https://amaskerala.org/assets/images/logo/amas-logo-text.png"
                             alt="Logo"
                             className="navbar-logo-img"
                         />

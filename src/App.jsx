@@ -8,6 +8,8 @@ import Landing from './pages/LandingPage/Landing';
 import UpcomingEvents from './pages/Events/UpcomingEvents';
 import Testimonials from './pages/Testimonials/Testimonials';
 import Events from './pages/Events/Events';
+import WhyUs from './pages/WhyUs/WhyUs';
+import ContactUs from './pages/ContactUs/ContactUs';
 const App = () => {
   return (
     <div>
@@ -21,13 +23,21 @@ const App = () => {
       <section id="events">
         <Events />
       </section>
-      <section id="aboutus">
+      <section id="testimonials">
+        <Testimonials />
+      </section>
+      <section id="why-us">
+        <WhyUs />
+      </section>
+      <section id="about-us">
         <AboutUs />
       </section>
-      {/* <section id="testimonials"> */}
-      <Testimonials />
-      {/* </section> */}
-      {/* Add other sections similarly */}
+      <section id="contact-us">
+        <ContactUs />
+      </section>
+      <section id="testimonials">
+        <Testimonials />
+      </section>
     </div>
   );
 };
