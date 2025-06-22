@@ -11,6 +11,8 @@ import Events from './pages/Events/Events';
 import WhyUs from './pages/WhyUs/WhyUs';
 import ContactUs from './pages/ContactUs/ContactUs';
 import FAB from './components/FloatingActionButton/FAB';
+import TeamLegacy from './pages/TeamLegacy/TeamLegacy';
+import OfferedActivities from './pages/OfferedActivities/OfferedActivities';
 const App = () => {
   return (
     <div>
@@ -20,6 +22,12 @@ const App = () => {
       </section>
       <section id="home">
         <Home />
+      </section>
+      <section id="offered-activities">
+        <OfferedActivities />
+      </section>
+      <section id="team-legacy">
+        <TeamLegacy />
       </section>
       <section id="events">
         <Events />

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './HomePage.css';
 import homeData from './HomeData'; // Assuming homeData is an array of objects with left_image, right_image, and icon properties
+import CountUp from 'react-countup';
 
 const HomePage = () => {
     const [count, setCount] = useState(0);
@@ -45,9 +46,8 @@ const HomePage = () => {
                         with your friends or like spirited adventurers!
                     </p>
                     <div className="experience-box">
-                        <h2 className="number">{count}<span>+</span></h2>
-                   <h6 className="highlight-zoom">Safe & Thrilling Years</h6>
-
+                        <h2 className="number"><CountUp end={19} duration={3} /><span>+</span></h2>
+                        <h6 className="highlight-zoom">Safe & Thrilling Years</h6>
                     </div>
                 </div>
 

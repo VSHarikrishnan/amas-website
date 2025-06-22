@@ -53,16 +53,18 @@
     display: flex;
     gap: 15px;
     list-style: none;
-    padding: 0px 10px;
+    padding: 0px .5rem;
     margin: 0;
+    font-size: 0.85rem;
 }
 
 .nav-links-horizontal li {
     position: relative;
+    font-size: 1.1rem;
 }
 
 .nav-links-horizontal>li>.nav-link {
-    padding: 8px 16px;
+    padding: .5rem .5rem;
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 6px;
     color: white;
@@ -111,9 +113,7 @@
     z-index: 1001;
 
     max-height: 50vh;
-    /* ⬅️ Limit height to 50% of the screen */
     overflow-y: auto;
-    /* ⬅️ Enable scrolling if content exceeds */
     width: max-content;
     padding: 0;
     margin: 0;
@@ -125,7 +125,6 @@
 
 .dropdown-menu::-webkit-scrollbar {
     display: none;
-    /* Chrome/Safari: hide scrollbar */
 }
 
 .dropdown-menu li {
@@ -173,11 +172,8 @@
     margin-top: 5px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     box-sizing: border-box;
-
-    height: 80vh;
-    /* ✅ Full screen height */
+    max-height: 80vh;
     overflow-y: auto;
-    /* ✅ Scroll when content overflows */
 }
 
 .nav-links-vertical {
@@ -192,6 +188,7 @@
 
 .nav-links-vertical li {
     width: 95%;
+    font-size: 0.85rem;
 }
 
 .nav-links-vertical>li>.nav-link {
@@ -205,6 +202,7 @@
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
+    font-size: 0.85rem;
 }
 
 .nav-links-vertical li .nav-link.active {

@@ -19,12 +19,12 @@ const Landing = () => {
             <Carousel
                 autoPlay
                 infiniteLoop
-                showThumbs={true}
-                showStatus={true}
+                showThumbs={false}
+                showStatus={false}
                 showArrows={true}
                 interval={3000}
                 transitionTime={1000}
-                stopOnHover={false}
+                stopOnHover={true}
                 swipeable={true}
                 emulateTouch
             >

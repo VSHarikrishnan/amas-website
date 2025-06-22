@@ -61,8 +61,9 @@ const Events = () => {
 
     return (
         <div className="upcoming-events-page">
-            <h2 className="events-heading">Upcoming Treks & Events</h2>
-
+            <h2 className="events-heading">
+                <span className="thin">Upcoming</span> Treks  <span className="thin">&</span><span> Events</span>
+            </h2>
             <div className="filter-sort-controls">
                 <select value={eventType} onChange={(e) => setEventType(e.target.value)}>
                     <option value="">All Types</option>

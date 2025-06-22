@@ -1,0 +1,136 @@
+.team-legacy-section {
+    padding: 2rem 1rem;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+/* Flex container for desktop row layout */
+.legacy-row {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Left side content */
+.experience-content {
+    flex: 1 1 48%;
+    text-align: left;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    color: #272343;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.section-title .thin {
+    font-weight: 300;
+    color: #444;
+}
+
+.experience-content p {
+    font-size: 1.05rem;
+    color: #333;
+    line-height: 1.6;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Right side: activities in 2x2 grid */
+.activities {
+    flex: 1 1 48%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    box-sizing: border-box;
+}
+
+/* Activity cards */
+.activity {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid transparent;
+}
+
+.activity:hover {
+    background-color: #f0f8ff;
+    border-color: #3e3b85;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.activity i {
+    font-size: 2.75rem;
+    color: #3e3b85;
+    margin-bottom: 0.75rem;
+    transition: color 0.3s ease;
+}
+
+.activity:hover i {
+    color: #272343;
+}
+
+.counter-number {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #272343;
+    margin: 0.5rem 0;
+}
+
+.activity p {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+    line-height: 1.4;
+    font-family: 'Prompt', sans-serif;
+}
+
+/* Responsive: stack vertically */
+@media (max-width: 768px) {
+    .legacy-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: .5rem;
+    }
+
+    .experience-content,
+    .activities {
+        flex: 1 1 100%;
+        padding: 0;
+    }
+
+    .section-title h2 {
+        font-size: 2rem;
+    }
+
+    .activity p {
+        font-size: 1rem;
+    }
+
+    .counter-number {
+        font-size: 2rem;
+    }
+
+    .activities {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
