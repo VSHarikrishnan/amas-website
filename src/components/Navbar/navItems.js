@@ -1,6 +1,6 @@
 const navItems = {
     'home': 'Home',
-    'treks': 'Treks',
+    'trek': 'Trek',
     'gallery': {
         'trekking': 'Trekking',
         'valleycrossing': 'Valley Crossing',

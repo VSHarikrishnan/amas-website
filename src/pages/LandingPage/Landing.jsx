@@ -29,8 +29,8 @@ const Landing = () => {
                 emulateTouch
             >
                 {images.map((img, index) => (
-                    <div key={index} className="carousel-slide">
-                        <img src={img} alt={`Slide ${index}`} className="carousel-image" />
+                    <div key={index} className="custom-carousel-slide">
+                        <img src={img} alt={`Slide ${index}`} className="custom-carousel-image" />
                     </div>
                 ))}
             </Carousel>

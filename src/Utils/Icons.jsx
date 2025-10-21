@@ -18,7 +18,10 @@ const iconMap = {
     swimming: "fa-solid fa-person-swimming",
     walking: "fa-solid fa-person-walking",
     biking: "fa-solid fa-person-biking",
-    community: "fa-solid fa-people-roof"
+    community: "fa-solid fa-people-roof",
+    clock: "fa-regular fa-clock",
+    location: "fa-regular fa-location-pin",
+    crossHair:"fa-solid fa-location-crosshairs"
 };
 export const getIconClass = (iconName) => {
     return iconMap[iconName] || "fa-solid fa-campground"; // Default icon if not found
@@ -27,3 +30,5 @@ export const getIcon = (iconName) => {
     const iconClass = getIconClass(iconName);
     return <i className={iconClass}></i>;
 };
+
+// import { getIconClass } from '../../Utils/Icons';

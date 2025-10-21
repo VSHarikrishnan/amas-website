@@ -41,7 +41,7 @@
 
 .menu-toggle {
     display: none;
-    font-size: 1.8rem;
+   font-size: 0.85rem;
     background: none;
     border: none;
     color: white;
@@ -102,7 +102,11 @@
     border-color: #2e8bc0;
     background-color: rgba(46, 139, 192, 0.15);
 }
-
+.dropdown-toggle .dropdown-icon {
+    margin-left: 5px;
+    color: #fbbf24;
+    font-size: 0.85rem;
+}
 /* --- Dropdown popup --- */
 .dropdown-menu {
     position: absolute;

@@ -1,51 +1,21 @@
 // src/App.jsx
 import React from 'react';
-import Navbar from './components/Navbar/Navbar';
-import Home from './pages/Home/Home';
-import AboutUs from './pages/AboutUs/AboutUs';
-import Treks from './pages/Treks/Treks';
-import Landing from './pages/LandingPage/Landing';
-import UpcomingEvents from './pages/Events/UpcomingEvents';
-import Testimonials from './pages/Testimonials/Testimonials';
-import Events from './pages/Events/Events';
-import WhyUs from './pages/WhyUs/WhyUs';
-import ContactUs from './pages/ContactUs/ContactUs';
-import FAB from './components/FloatingActionButton/FAB';
-import TeamLegacy from './pages/TeamLegacy/TeamLegacy';
-import OfferedActivities from './pages/OfferedActivities/OfferedActivities';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ScrollHomePage from './pages/Home/ScrollHomePage';
+import TrekDetails from './pages/TrekDetails/TrekDetails';
+import ScrollToTop from './Utils/ScrollToTop';
+
 const App = () => {
   return (
-    <div>
-      <Navbar />
-      <section id="landing">
-        <Landing />
-      </section>
-      <section id="home">
-        <Home />
-      </section>
-      <section id="offered-activities">
-        <OfferedActivities />
-      </section>
-      <section id="team-legacy">
-        <TeamLegacy />
-      </section>
-      <section id="events">
-        <Events />
-      </section>
-      <section id="testimonials">
-        <Testimonials />
-      </section>
-      <section id="why-us">
-        <WhyUs />
-      </section>
-      <section id="about-us">
-        <AboutUs />
-      </section>
-      <section id="contact-us">
-        <ContactUs />
-      </section>
-      <FAB />
-    </div>
+    <Router>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<ScrollHomePage />} />
+        <Route path="/trek" element={<TrekDetails />} />
+        {/* <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} /> */}
+      </Routes>
+    </Router>
   );
 };
 
