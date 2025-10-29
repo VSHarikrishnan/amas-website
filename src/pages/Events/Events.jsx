@@ -2,9 +2,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './Events.css';
-import treksData from '../Treks/TrekData';
+// import treksData from '../Treks/TrekData';
 import { sortTreks, filterTreks } from './EventsLogic';
 import TrekCard from '../../components/TrekCard/TrekCard';
+import { fetchAllTrekData } from '../../api/api';
+import useTrekDataStore from '../../store/trekDataStore';
 
 const Events = () => {
     const [selectedDate, setSelectedDate] = useState(null);
@@ -19,7 +21,7 @@ const Events = () => {
 
     const tileContent = ({ date, view }) => {
         if (view === 'month') {
-            const match = treksData.find(e => e.date === formatDate(date));
+            const match = treks.find(e => e.date === formatDate(date));
             return match ? <div className="event-dot">📌</div> : null;
         }
     };
@@ -52,8 +54,26 @@ const Events = () => {
         }
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, [showCalendar]);
+    const { treks, setTreks } = useTrekDataStore(); // ✅ changed to match store naming
 
-    const filteredTreks = filterTreks(treksData, { searchText, eventType });
+    useEffect(() => {
+        const loadTreks = async () => {
+            try {
+                const data = await fetchAllTrekData();
+                setTreks(data.data || []); // ✅ ensures non-null
+                console.log("✅ Treks loaded:", data.data);
+            } catch (err) {
+                console.error("❌ Failed to load treks:", err);
+            }
+        };
+        loadTreks();
+    }, [setTreks]);
+
+    if (!treks || treks.length === 0) {
+        return <div className="loading">Loading treks...</div>; // ✅ fallback UI
+    }
+
+    const filteredTreks = filterTreks(treks, { searchText, eventType });
     const sortedTreks = sortTreks(filteredTreks, sortBy);
     const eventsToDisplay = selectedDate
         ? sortedTreks.filter(e => e.date === selectedDate)

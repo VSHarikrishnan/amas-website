@@ -1,11 +1,28 @@
-import React from 'react';
 import Slider from 'react-slick';
 import testimonials from './TestimonialsData';
 import './Testimonials.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import useReviewDataStore from '../../store/reviewDataStore';
+import { useEffect } from 'react';
+import { fetchAllReviews } from '../../api/api';
 
 const Testimonials = () => {
+    const { reviews, setReviews } = useReviewDataStore(); // ✅ changed to match store naming
+    useEffect(() => {
+        const loadReviews = async () => {
+            try {
+                const data = await fetchAllReviews();
+                setReviews(data.data || []);
+                console.log("✅ Testimonials loaded:", data.data);
+            } catch (err) {
+                console.error("❌ Failed to load testimonials:", err);
+            }
+        }
+        loadReviews();
+    }
+
+        , []);
     const settings = {
         dots: true,
         infinite: true,
@@ -34,14 +51,14 @@ const Testimonials = () => {
             </h2>
 
             <Slider {...settings}>
-                {testimonials.map((testimonial, index) => (
+                {reviews.map((testimonial, index) => (
                     <div key={testimonial.id} className="testimonial-slide">
                         <div className={`item ${index === 1 ? 'active' : 'side'}`}>
                             <div className="shadow-effect">
 
                                 {/* ✅ Date Row */}
                                 <div className="testimonial-date-row">
-                                    <span className="testimonial-date">{testimonial.date}</span>
+                                    <span className="testimonial-date">{testimonial.date.split('T')[0]}</span>
                                 </div>
 
                                 <div className="test_holder">
@@ -50,7 +67,7 @@ const Testimonials = () => {
                                     </div>
                                     <div className="test_name">
                                         <h3>{testimonial.name}</h3>
-                                        <p>{testimonial.role}</p>
+                                        <p>{testimonial.job}</p>
                                         <div className="star_1">
                                             {Array.from({ length: testimonial.rating }).map((_, idx) => (
                                                 <i key={idx} className="fa fa-star"></i>
@@ -60,7 +77,7 @@ const Testimonials = () => {
                                 </div>
 
                                 <div className="test_desc">
-                                    <p>{testimonial.feedback}</p>
+                                    <p>{testimonial.comment}</p>
                                 </div>
                             </div>
                         </div>

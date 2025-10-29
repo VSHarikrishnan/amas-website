@@ -1,13 +1,33 @@
 // src/pages/Treks/Treks.jsx
-import React from 'react';
 import './treks.css';
 import treksData from './TrekData';
-
+import { useEffect } from 'react';
+import { fetchAllTrekData } from '../../api/api';
+import useTrekDataStore from '../../store/trekDataStore';
 
 const TrekGrid = () => {
+    const { treks, setTreks } = useTrekDataStore(); // ✅ changed to match store naming
+
+    useEffect(() => {
+        const loadTreks = async () => {
+            try {
+                const data = await fetchAllTrekData();
+                setTreks(data.data || []); // ✅ ensures non-null
+                console.log("✅ Treks loaded:", data.data);
+            } catch (err) {
+                console.error("❌ Failed to load treks:", err);
+            }
+        };
+        loadTreks();
+    }, [setTreks]);
+
+    if (!treks || treks.length === 0) {
+        return <div className="loading">Loading treks...</div>; // ✅ fallback UI
+    }
+
     return (
         <div className="trek-grid-container">
-            {treksData.map(trek => (
+            {treks.map(trek => (
                 <div key={trek.id} className="trek-card">
                     <div className="image-wrapper">
                         <img src={trek.image} alt={trek.name} className="trek-img" />

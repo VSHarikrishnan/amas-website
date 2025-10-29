@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './AboutUs.css';
-
-const teamMembers = [
+import { fetchAllTeamMembers } from '../../api/api';
+const teamMembers = [];
+const teamMembers1 = [
     {
         id: 1,
         name: 'Tomy',
@@ -122,6 +123,19 @@ const teamMembers = [
 ];
 
 const AboutUs = () => {
+    const [teamMembers, setTeamMembers] = useState([]);
+    useEffect(() => {
+        const loadteamMembers = async () => {
+            try {
+                const data = await fetchAllTeamMembers();
+                setTeamMembers(data.data || []); // ✅ ensures non-null
+                console.log("✅ teamMembers loaded:", data.data);
+            } catch (err) {
+                console.error("❌ Failed to load teamMembers:", err);
+            }
+        };
+        loadteamMembers();
+    }, []);
     return (
         <div className="about-us-amas">
             {/* Left section: Story */}
@@ -143,18 +157,28 @@ const AboutUs = () => {
 
             {/* Right section: Team members */}
             <div className="amas-team">
-                <h2>Meet Our Team</h2>
-                <div className="team-grid">
-                    {teamMembers.map((member) => (
-                        <div key={member.id} className="team-card">
-                            <img src={member.image} alt={member.name} className="team-img" />
-                            <div className="team-info">
-                                <h4>{member.name}</h4>
-                                <p>{member.role}</p>
-                            </div>
+                {teamMembers && teamMembers.length > 0 ? (
+                    <>
+                        <h2>Meet Our Team</h2>
+                        <div className="team-grid">
+                            {teamMembers.map((member) => (
+                                <div key={member._id} className="team-card">
+                                    <img
+                                        src={member.image}
+                                        alt={member.name}
+                                        className="team-img"
+                                    />
+                                    <div className="team-info">
+                                        <h4>{member.name}</h4>
+                                        <p>{member.role}</p>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
+                    </>
+                ) : (
+                    <div className="team-grid"></div>
+                )}
             </div>
         </div>
     );

@@ -4,22 +4,24 @@ import homeData from './HomeData'; // Assuming homeData is an array of objects w
 import CountUp from 'react-countup';
 
 const HomePage = () => {
-    const [count, setCount] = useState(0);
+    // const [count, setCount] = useState(0);
     const [currentIndex, setCurrentIndex] = useState(0);
-
-    // Counter animation
-    useEffect(() => {
-        let start = 0;
-        const end = 19;
-        const duration = 4000;
-        const stepTime = Math.floor(duration / end);
-        const timer = setInterval(() => {
-            start += 1;
-            setCount(start);
-            if (start === end) clearInterval(timer);
-        }, stepTime);
-        return () => clearInterval(timer);
-    }, []);
+    let years_of_service = (new Date().getFullYear()) - 2006;
+    // // Counter animation
+    // useEffect(() => {
+    //     let start = 0;
+    //     console.log("Current Year:", new Date().getFullYear());
+    //     let end = (new Date().getFullYear()) - 2003;
+    //     const duration = 4000;
+    //     const stepTime = Math.floor(duration / end);
+    //     const timer = setInterval(() => {
+    //         start += 1;
+    //         setCount(start);
+    //         console.log(start);
+    //         if (start === end) clearInterval(timer);
+    //     }, stepTime);
+    //     return () => clearInterval(timer);
+    // }, []);
 
     // Image rotation
     useEffect(() => {
@@ -46,7 +48,7 @@ const HomePage = () => {
                         with your friends or like spirited adventurers!
                     </p>
                     <div className="experience-box">
-                        <h2 className="number"><CountUp end={19} duration={3} /><span>+</span></h2>
+                        <h2 className="number"><CountUp end={years_of_service} duration={3} /><span>+</span></h2>
                         <h6 className="highlight-zoom">Safe & Thrilling Years</h6>
                     </div>
                 </div>
