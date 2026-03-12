@@ -27,9 +27,9 @@ const ScrollHomePage = () => {
             <section id="team-legacy">
                 <TeamLegacy />
             </section>
-            <section id="events">
+            {/* <section id="events">
                 <Events />
-            </section>
+            </section> */}
             <section id="testimonials">
                 <Testimonials />
             </section>
