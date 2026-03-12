@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './AboutUs.css';
-import { fetchAllTeamMembers } from '../../api/api';
+import { fetchAllTeamMembers } from '../../api/Api';
 const teamMembers = [];
 const teamMembers1 = [
     {
