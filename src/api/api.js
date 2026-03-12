@@ -1,83 +1,132 @@
 // src/api/api.js
+// ============================================================
+// API SERVICE — Adventure NGO
+// ------------------------------------------------------------
+// All functions call the real Spring backend.
+// During development, import from mockData.js instead:
+//
+//   import { fetchAllTrekData } from './mockData.js'  ← mock
+//   import { fetchAllTrekData } from './api.js'        ← live
+//
+// BASE_URL is read from .env:
+//   VITE_API_BASE_URL=http://localhost:8080
+// ============================================================
 
-const BASE_URL = "http://localhost:8080";
+export const BASE_URL =
+    import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
 
-// Define all endpoints in one place
-const ENDPOINTS = {
+// ── All endpoint paths in one place ──────────────────────────
+export const ENDPOINTS = {
+    // Treks
     GET_ALL_TREK_DATA: "/treks/get_all_trek_data",
-    GET_TREK_DATA: "/treks/get_trek_data",
+    GET_TREK_DATA: "/treks/get_trek_data",        // + /:id
+
+    // Team
     GET_ALL_TEAM_MEMBERS: "/team/get_all_team_members",
-    GET_TEAM_MEMBER: "/team/get_team_member",
+    GET_TEAM_MEMBER: "/team/get_team_member",    // + /:id
+
+    // Reviews
     GET_ALL_REVIEWS: "/reviews/get_all_reviews",
+
+    // Events
+    GET_ALL_EVENTS: "/events/get_all_events",
+    GET_EVENT: "/events/get_event",              // + /:id
+
+    // Activities
+    GET_ALL_ACTIVITIES: "/activities/get_all_activities",
+
+    // Navigation
+    GET_NAVIGATION: "/navigation/get_navigation",
+
+    // Stats
+    GET_ORG_STATS: "/stats/get_org_stats",
+
+    // Contact
+    POST_CONTACT_FORM: "/contact/submit",
 };
 
-// Generic fetch utility
+// ── Generic fetch wrapper ─────────────────────────────────────
 async function apiRequest(endpoint, method = "GET", body = null) {
     const options = {
         method,
-        headers: {
-            "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
     };
+    if (body) options.body = JSON.stringify(body);
 
-    if (body) {
-        options.body = JSON.stringify(body);
+    const response = await fetch(`${BASE_URL}${endpoint}`, options);
+
+    if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`HTTP ${response.status}: ${errorText}`);
     }
 
-    try {
-        const response = await fetch(`${BASE_URL}${endpoint}`, options);
-
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`HTTP error ${response.status}: ${errorText}`);
-        }
-
-        return await response.json();
-    } catch (error) {
-        console.error("API Error:", error.message);
-        throw error;
-    }
+    return response.json();
 }
 
-// ----------- API Methods ------------
+// ============================================================
+// NAVIGATION
+// ============================================================
+export async function fetchNavData() {
+    return apiRequest(ENDPOINTS.GET_NAVIGATION);
+}
 
-// Fetch all treks
+// ============================================================
+// TREKS
+// ============================================================
 export async function fetchAllTrekData() {
-    return await apiRequest(ENDPOINTS.GET_ALL_TREK_DATA);
+    return apiRequest(ENDPOINTS.GET_ALL_TREK_DATA);
 }
 
-// Fetch a single trek by ID
 export async function fetchTrekDataById(id) {
-    return await apiRequest(`${ENDPOINTS.GET_TREK_DATA}/${id}`);
+    return apiRequest(`${ENDPOINTS.GET_TREK_DATA}/${id}`);
 }
 
-// Fetch all team members
+// ============================================================
+// TEAM
+// ============================================================
 export async function fetchAllTeamMembers() {
-    return await apiRequest(ENDPOINTS.GET_ALL_TEAM_MEMBERS);
+    return apiRequest(ENDPOINTS.GET_ALL_TEAM_MEMBERS);
 }
 
-// Fetch a team member by ID
 export async function fetchTeamMemberById(id) {
-    return await apiRequest(`${ENDPOINTS.GET_TEAM_MEMBER}/${id}`);
+    return apiRequest(`${ENDPOINTS.GET_TEAM_MEMBER}/${id}`);
 }
-// Fetch all reviews
+
+// ============================================================
+// REVIEWS / TESTIMONIALS
+// ============================================================
 export async function fetchAllReviews() {
-    return await apiRequest(ENDPOINTS.GET_ALL_REVIEWS);
+    return apiRequest(ENDPOINTS.GET_ALL_REVIEWS);
 }
 
-// // Add a new trek
-// export async function addTrek(trekData) {
-//     return await apiRequest(ENDPOINTS.TREKS, "POST", trekData);
-// }
+// ============================================================
+// EVENTS
+// ============================================================
+export async function fetchAllEvents() {
+    return apiRequest(ENDPOINTS.GET_ALL_EVENTS);
+}
 
-// // User login
-// export async function loginUser(credentials) {
-//     return await apiRequest(ENDPOINTS.AUTH_LOGIN, "POST", credentials);
-// }
+export async function fetchEventById(id) {
+    return apiRequest(`${ENDPOINTS.GET_EVENT}/${id}`);
+}
 
-// // User registration
-// export async function registerUser(userData) {
-//     return await apiRequest(ENDPOINTS.AUTH_REGISTER, "POST", userData);
-// }
+// ============================================================
+// ACTIVITIES
+// ============================================================
+export async function fetchAllActivities() {
+    return apiRequest(ENDPOINTS.GET_ALL_ACTIVITIES);
+}
 
-export { BASE_URL, ENDPOINTS };
+// ============================================================
+// ORG STATS
+// ============================================================
+export async function fetchOrgStats() {
+    return apiRequest(ENDPOINTS.GET_ORG_STATS);
+}
+
+// ============================================================
+// CONTACT FORM  (POST)
+// ============================================================
+export async function submitContactForm(formData) {
+    return apiRequest(ENDPOINTS.POST_CONTACT_FORM, "POST", formData);
+}

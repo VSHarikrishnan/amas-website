@@ -1,161 +1,192 @@
-import React, { useState, useEffect, useRef } from 'react';
+// src/components/Navbar/Navbar.jsx
+// ============================================================
+// All data fetching lives in src/api/api.js
+// Swap mock → live there without touching this file.
+// ============================================================
+
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
-import { Navigate, Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
+import { fetchNavData } from '../../api/MockData.js';
 import './navbar.css';
-import navItems from './navItems';
+
+const SCROLL_OFFSET = -70;
 
 const Navbar = () => {
+    const [navData, setNavData] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
     const [openDropdown, setOpenDropdown] = useState(null);
     const [isVisible, setIsVisible] = useState(true);
+    const [isScrolled, setIsScrolled] = useState(false);
+
     const navRef = useRef(null);
+    const lastScrollY = useRef(0);
+
     const location = useLocation();
-
     const isHomePage = location.pathname === '/';
-    const navigate = useNavigate();
-    const handleNavClick = (section) => {
-        console.log(section);
-        setIsOpen(false);
-        setOpenDropdown(null);
-        switch (section) {
-            case 'login':
-                Navigate('/login');
-                break;
-            case 'register':
-                navigate('/register');
-                break;
-            case 'trek':
-                navigate('/trek');
-                break;
-            case 'contact':
-                navigate('/contact');
-                break;
 
-            // ... add more non-scroll routes as needed
-
-            default:
-                // Scroll-based sections like home, events, about-us, etc.
-                if (location.pathname !== '/') {
-                    navigate(`/#${section}`);
-                }
-                break;
-        }
-    };
-
+    // ── Fetch nav data ────────────────────────────────────────
     useEffect(() => {
-        const handleScroll = () => {
-            setIsVisible(window.scrollY > 60);
+        fetchNavData()
+            .then(setNavData)
+            .catch((err) => console.error('[Navbar] Data load failed:', err));
+    }, []);
+
+    // ── Smart scroll: hide on down, show on up ────────────────
+    useEffect(() => {
+        const onScroll = () => {
+            const y = window.scrollY;
+            setIsScrolled(y > 20);
+            setIsVisible(y < 60 || y < lastScrollY.current);
+            lastScrollY.current = y;
             setOpenDropdown(null);
         };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
+    // ── Close dropdown on outside click ──────────────────────
     useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (navRef.current && !navRef.current.contains(event.target)) {
+        const onOutside = (e) => {
+            if (navRef.current && !navRef.current.contains(e.target))
                 setOpenDropdown(null);
-            }
         };
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
+        document.addEventListener('mousedown', onOutside);
+        return () => document.removeEventListener('mousedown', onOutside);
     }, []);
 
-    const renderNavItem = (section, label) => {
-        if (typeof label === 'string') {
+    // ── Lock body scroll when mobile menu open ────────────────
+    useEffect(() => {
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+        return () => { document.body.style.overflow = ''; };
+    }, [isOpen]);
+
+    // ── Close all menus on route change ──────────────────────
+    useEffect(() => {
+        setIsOpen(false);
+        setOpenDropdown(null);
+    }, [location]);
+
+    const closeAll = useCallback(() => { setIsOpen(false); setOpenDropdown(null); }, []);
+    const toggleDropdown = useCallback((key) => setOpenDropdown((p) => (p === key ? null : key)), []);
+
+    // ── Render link based on item.type ────────────────────────
+    const renderLink = useCallback(
+        (item, className) => {
+            const { key, label, type, target } = item;
+
+            if (type === 'route') {
+                return <RouterLink key={key} to={target} className={className} onClick={closeAll}>{label}</RouterLink>;
+            }
+            // scroll
+            if (isHomePage) {
+                return (
+                    <ScrollLink key={key} to={target} smooth duration={600} offset={SCROLL_OFFSET}
+                        className={className} activeClass="active" spy onClick={closeAll}>
+                        {label}
+                    </ScrollLink>
+                );
+            }
+            return <RouterLink key={key} to={`/#${target}`} className={className} onClick={closeAll}>{label}</RouterLink>;
+        },
+        [isHomePage, closeAll],
+    );
+
+    // ── Render nav item (link or dropdown) ───────────────────
+    const renderNavItem = useCallback(
+        (item, vertical = false) => {
+            if (item.type !== 'dropdown') {
+                return <li key={item.key}>{renderLink(item, 'nav-link')}</li>;
+            }
+
+            const expanded = openDropdown === item.key;
             return (
-                <li key={section}>
-                    {isHomePage ? (
-                        <ScrollLink
-                            to={section}
-                            smooth={true}
-                            duration={500}
-                            offset={-60}
-                            onClick={() => handleNavClick(section)}
-                            className="nav-link"
-                        >
-                            {label}
-                        </ScrollLink>
-                    ) : (
-                        <RouterLink to={`/#${section}`} className="nav-link" onClick={() => handleNavClick(section)}>
-                            {label}
-                        </RouterLink>
-                    )}
-                </li>
-            );
-        } else {
-            return (
-                <li key={section} className="nav-item dropdown">
-                    <div
-                        className="nav-link dropdown-toggle"
-                        onClick={() => setOpenDropdown(openDropdown === section ? null : section)}
-                    >
-                        {section.charAt(0).toUpperCase() + section.slice(1)}<span className='dropdown-icon '>▼</span>
+                <li key={item.key} className={`nav-item dropdown${expanded ? ' open' : ''}`}>
+                    <div className="nav-link dropdown-toggle" role="button"
+                        onClick={() => toggleDropdown(item.key)}
+                        aria-expanded={expanded} aria-haspopup="true">
+                        {item.label}
+                        <span className="dropdown-icon">▼</span>
                     </div>
-                    {openDropdown === section && (
-                        <ul className="dropdown-menu">
-                            {Object.entries(label).map(([subKey, subLabel]) => (
-                                <li key={subKey}>
-                                    {isHomePage ? (
-                                        <ScrollLink
-                                            to={subKey}
-                                            smooth={true}
-                                            duration={500}
-                                            offset={-60}
-                                            onClick={() => handleNavClick(section)}
-                                            className="dropdown-link"
-                                        >
-                                            {subLabel}
-                                        </ScrollLink>
-                                    ) : (
-                                        <RouterLink to={`/#${subKey}`} className="dropdown-link" onClick={() => handleNavClick(section)}>
-                                            {subLabel}
-                                        </RouterLink>
-                                    )}
-                                </li>
+
+                    {expanded && (
+                        <ul className={`dropdown-menu${vertical ? ' dropdown-menu--vertical' : ''}`}>
+                            {item.children.map((child) => (
+                                <li key={child.key}>{renderLink(child, 'dropdown-link')}</li>
                             ))}
                         </ul>
                     )}
                 </li>
             );
-        }
-    };
+        },
+        [openDropdown, toggleDropdown, renderLink],
+    );
+
+    if (!navData) return null; // data loads near-instantly from mock; add a skeleton here if using real API
+    const { logo, items, cta } = navData;
 
     return (
-        <nav className={`navbar ${!isVisible ? 'hidden' : ''}`} ref={navRef}>
-            <div className="navbar-container">
-                <div className="logo-wrapper">
-                    <RouterLink to="/" className="logo">
-                        <img
-                            src="https://amaskerala.org/assets/images/logo/amas-logo-text.png"
-                            alt="Logo"
-                            className="navbar-logo-img"
-                        />
-                    </RouterLink>
-                </div>
+        <>
+            <nav
+                ref={navRef}
+                className={['navbar', !isVisible && 'hidden', isScrolled && 'scrolled'].filter(Boolean).join(' ')}
+                aria-label="Main navigation"
+            >
+                <div className="navbar-container">
 
-                <button className="menu-toggle" onClick={() => setIsOpen(!isOpen)}>☰</button>
+                    {/* Logo */}
+                    <div className="logo-wrapper">
+                        <RouterLink to={logo.href} aria-label={`${logo.alt} — Home`}>
+                            <img
+                                src={logo.src}
+                                alt={logo.alt}
+                                className="navbar-logo-img"
+                                onError={(e) => {
+                                    e.target.style.display = 'none';
+                                    e.target.insertAdjacentHTML('afterend',
+                                        `<span class="logo-text">${logo.fallbackText}<span>${logo.fallbackAccent}</span></span>`);
+                                }}
+                            />
+                        </RouterLink>
+                    </div>
 
-                <ul className="nav-links-horizontal">
-                    {Object.entries(navItems).map(([section, label]) => renderNavItem(section, label))}
-                    <li>
-                        <RouterLink to="/login" className="nav-link" onClick={() => handleNavClick(section)}>Login</RouterLink>
-                    </li>
-                </ul>
-            </div>
-
-            {isOpen && (
-                <div className="sidebar">
-                    <ul className="nav-links-vertical">
-                        {Object.entries(navItems).map(([section, label]) => renderNavItem(section, label))}
+                    {/* Desktop links */}
+                    <ul className="nav-links-horizontal">
+                        {items.map((item) => renderNavItem(item, false))}
                         <li>
-                            <RouterLink to="/login" className="nav-link" onClick={() => handleNavClick(section)}>Login</RouterLink>
+                            <RouterLink to={cta.href} className="nav-cta" onClick={closeAll}>{cta.label}</RouterLink>
                         </li>
                     </ul>
+
+                    {/* Hamburger */}
+                    <button
+                        className={`menu-toggle${isOpen ? ' open' : ''}`}
+                        onClick={() => setIsOpen((p) => !p)}
+                        aria-label={isOpen ? 'Close menu' : 'Open menu'}
+                        aria-expanded={isOpen}
+                    >
+                        <span className="bar" /><span className="bar" /><span className="bar" />
+                    </button>
                 </div>
+            </nav>
+
+            {/* Mobile overlay */}
+            {isOpen && <div className="sidebar-overlay" onClick={() => setIsOpen(false)} aria-hidden="true" />}
+
+            {/* Mobile sidebar */}
+            {isOpen && (
+                <aside className="sidebar" aria-label="Mobile navigation">
+                    <ul className="nav-links-vertical">
+                        {items.map((item) => renderNavItem(item, true))}
+                    </ul>
+                    <div className="sidebar-cta-wrap">
+                        <RouterLink to={cta.href} className="nav-cta" onClick={closeAll}>
+                            {cta.label} / Register
+                        </RouterLink>
+                    </div>
+                </aside>
             )}
-        </nav>
+        </>
     );
 };
 
