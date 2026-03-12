@@ -46,11 +46,14 @@ export const ENDPOINTS = {
 
     // Contact
     POST_CONTACT_FORM: "/contact/submit",
+
     GET_LANDING: "/landing/get_landing",
 
     GET_OFFERED_ACTIVITIES: "/activities/get_offered_activities",
+
     GET_TEAM_LEGACY: "/team/get_team_legacy",
 
+    GET_WHY_US: "/whyus/get_why_us",
 };
 
 // HOME PAGE
@@ -159,4 +162,9 @@ export async function fetchOfferedActivities() {
 // TEAM LEGACY
 export async function fetchTeamLegacyData() {
     return apiRequest(ENDPOINTS.GET_TEAM_LEGACY);
+}
+
+// WHY US
+export async function fetchWhyUsData() {
+    return apiRequest(ENDPOINTS.GET_WHY_US);
 }

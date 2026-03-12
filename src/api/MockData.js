@@ -519,7 +519,61 @@ export const MOCK_REVIEWS = [
         comment: "The valley crossing during monsoon was a rush of adrenaline I will never forget. Everything was perfectly organized. Highly recommended for anyone seeking real adventure.",
     },
 ];
-
+// ============================================================
+// WHY US
+// ============================================================
+export const MOCK_WHY_US = {
+    eyebrow: "Why Choose AMAS Kerala",
+    heading: "Why people <span>choose us</span>",
+    subheading: "We combine years of expedition experience with a genuine passion for making adventure safe, accessible, and unforgettable.",
+    badge: {
+        value: "18+",
+        label: "Years of Trust",
+    },
+    images: [
+        "https://amaskerala.org/assets/images/home/why-trust/rock-climbing.jpg",
+        "https://amaskerala.org/assets/images/home/40-adventures/resized/rock-climbing.jpg",
+        "https://amaskerala.org/assets/images/home/40-adventures/resized/sailing.jpg",
+    ],
+    reasons: [
+        {
+            id: 1,
+            icon: "fa-solid fa-mountain",
+            title: "Expert Instructors",
+            subcontent: "Our team consists of trained mountaineers with years of real-world expedition experience.",
+        },
+        {
+            id: 2,
+            icon: "fa-solid fa-shield-halved",
+            title: "Uncompromised Safety",
+            subcontent: "We follow strict international standards for safety equipment and protocols on every activity.",
+        },
+        {
+            id: 3,
+            icon: "fa-solid fa-compass",
+            title: "Wide Range of Activities",
+            subcontent: "From high-altitude treks to rock climbing and rope courses, we cover it all under one roof.",
+        },
+        {
+            id: 4,
+            icon: "fa-solid fa-indian-rupee-sign",
+            title: "Affordable Packages",
+            subcontent: "We believe adventure should be accessible to everyone, with packages for every budget.",
+        },
+        {
+            id: 5,
+            icon: "fa-solid fa-people-group",
+            title: "Community First",
+            subcontent: "From student programs to corporate outings, we tailor every experience for your group.",
+        },
+        {
+            id: 6,
+            icon: "fa-solid fa-award",
+            title: "Certified & Recognised",
+            subcontent: "Affiliated with national adventure sports bodies and trusted by schools and institutions.",
+        },
+    ],
+};
 // ============================================================
 // MOCK FUNCTIONS
 // ------------------------------------------------------------
@@ -545,3 +599,4 @@ export async function fetchLandingData() { return MOCK_LANDING; }
 export async function fetchHomeData() { return MOCK_HOME; }
 export async function fetchOfferedActivities() { return MOCK_OFFERED_ACTIVITIES; }
 export async function fetchTeamLegacyData() { return MOCK_TEAM_LEGACY; }
+export async function fetchWhyUsData() { return MOCK_WHY_US; }

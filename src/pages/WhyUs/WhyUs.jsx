@@ -1,73 +1,85 @@
+// src/pages/WhyUs/WhyUs.jsx
+// ============================================================
+// WHY US — Adventure NGO
+// Switch import to '../../api/api' when backend is ready.
+// ============================================================
+
 import React, { useEffect, useState } from 'react';
+import { fetchWhyUsData } from '../../api/MockData';
 import './WhyUs.css';
 
-const reasonToChoose = [
-    {
-        id: 1,
-        icon: '🧗‍♂️',
-        title: 'Expert Instructors',
-        subcontent: 'Our team consists of trained mountaineers with years of real-world expedition experience.',
-    },
-    {
-        id: 2,
-        icon: '🛡️',
-        title: 'Uncompromised Safety',
-        subcontent: 'We follow strict international standards for safety equipment and protocols.',
-    },
-    {
-        id: 3,
-        icon: '🎯',
-        title: 'Wide Range of Activities',
-        subcontent: 'From high-altitude treks to rock climbing and rope courses, we cover it all.',
-    },
-    {
-        id: 4,
-        icon: '💰',
-        title: 'Affordable Packages',
-        subcontent: 'We believe adventure should be accessible to everyone.',
-    },
-];
-
-const imageList = [
-    'https://amaskerala.org/assets/images/home/why-trust/rock-climbing.jpg',
-    'https://amaskerala.org/assets/images/home/40-adventures/resized/rock-climbing.jpg  ',
-    'https://amaskerala.org/assets/images/home/40-adventures/resized/sailing.jpg',
-];
-
 const WhyUs = () => {
+    const [data, setData] = useState(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-    // Cycle through images every 5 seconds
     useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentImageIndex((prev) => (prev + 1) % imageList.length);
-        }, 5000); // Change image every 5 seconds
-
-        return () => clearInterval(interval);
+        fetchWhyUsData()
+            .then(setData)
+            .catch((err) => console.error('[WhyUs] Data load failed:', err));
     }, []);
 
-    const backgroundImageStyle = {
-        backgroundImage: `url(${imageList[currentImageIndex]})`,
-    };
+    // Cycle images every 5 s
+    useEffect(() => {
+        if (!data) return;
+        const interval = setInterval(() => {
+            setCurrentImageIndex((prev) => (prev + 1) % data.images.length);
+        }, 5000);
+        return () => clearInterval(interval);
+    }, [data]);
+
+    if (!data) return null;
+
+    const { eyebrow, heading, subheading, badge, images, reasons } = data;
 
     return (
         <div className="why-trust-us-container">
-            <div className="why-trust-image-section" style={backgroundImageStyle}></div>
+
+            {/* ── LEFT: cycling image ── */}
+            <div
+                className="why-trust-image-section"
+                style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
+            >
+                {/* Floating stat badge */}
+                <div className="why-image-badge">
+                    <span className="why-image-badge-number">{badge.value}</span>
+                    <span className="why-image-badge-label">{badge.label}</span>
+                </div>
+            </div>
+
+            {/* ── RIGHT: content ── */}
             <div className="why-trust-content-section">
-                <h2 className="why-trust-heading">
-                    Why people <strong>choose us</strong>
-                </h2>
+
+                <span className="why-eyebrow">{eyebrow}</span>
+
+                <h2
+                    className="why-trust-heading"
+                    dangerouslySetInnerHTML={{ __html: heading }}
+                />
+
+                <p className="why-trust-subheading">{subheading}</p>
+
                 <ul className="reasons-list">
-                    {reasonToChoose.map((reason) => (
+                    {reasons.map((reason) => (
                         <li key={reason.id} className="reason-item">
-                            <div className="reason-icon">{reason.icon}</div>
-                            <div>
+
+                            {/* Icon — uses FA class if provided, falls back to emoji */}
+                            <div className="reason-icon-wrap">
+                                {reason.icon.startsWith('fa') ? (
+                                    <i className={reason.icon} />
+                                ) : (
+                                    <span className="reason-icon-emoji">{reason.icon}</span>
+                                )}
+                            </div>
+
+                            <div className="reason-text">
                                 <div className="reason-title">{reason.title}</div>
                                 <div className="reason-subcontent">{reason.subcontent}</div>
                             </div>
+
                         </li>
                     ))}
                 </ul>
+
             </div>
         </div>
     );

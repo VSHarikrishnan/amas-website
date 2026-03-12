@@ -1,77 +1,292 @@
+/* src/pages/WhyUs/WhyUs.css */
+/* ============================================================
+   WHY US — Adventure NGO Design System
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@300;400;500&display=swap');
+
+/* ============================================================
+   CONTAINER — full-height two-column split
+   ============================================================ */
 .why-trust-us-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     overflow: hidden;
-    font-family: 'Segoe UI', sans-serif;
 }
 
+/* ============================================================
+   LEFT — IMAGE PANEL
+   ============================================================ */
 .why-trust-image-section {
+    position: relative;
     background-size: cover;
     background-position: center;
     transition: background-image 1s ease-in-out;
+    overflow: hidden;
 }
 
+/* Dark gradient over image so it doesn't compete with right panel */
+.why-trust-image-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+            rgba(26, 23, 48, 0.55) 0%,
+            rgba(26, 23, 48, 0.2) 60%,
+            transparent 100%);
+    z-index: 1;
+}
+
+/* Floating stat badge on the image */
+.why-image-badge {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 2.5rem;
+    z-index: 2;
+    background: rgba(39, 35, 67, 0.92);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 3px solid #00b34b;
+    border-radius: 8px;
+    padding: 1rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.why-image-badge-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    line-height: 1;
+    color: #00b34b;
+    letter-spacing: 0.04em;
+}
+
+.why-image-badge-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ============================================================
+   RIGHT — CONTENT PANEL
+   ============================================================ */
 .why-trust-content-section {
-    padding: 4rem 3rem;
-    background-color: #fff;
+    background: #ffffff;
+    padding: 5rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     overflow-y: auto;
+    position: relative;
 }
 
+/* Faint grid texture matching other sections */
+.why-trust-content-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(39, 35, 67, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(39, 35, 67, 0.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+}
+
+/* ── Eyebrow ── */
+.why-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #00b34b;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.why-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    background: #00b34b;
+    border-radius: 2px;
+}
+
+/* ── Heading ── */
 .why-trust-heading {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: 0.02em;
     color: #272343;
+    margin: 0 0 0.6rem;
+    position: relative;
+    z-index: 1;
 }
 
-.why-trust-heading strong {
-    font-weight: bold;
-    color: #1b1b1b;
+.why-trust-heading span {
+    color: #00b34b;
 }
 
+/* ── Subheading ── */
+.why-trust-subheading {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.97rem;
+    font-weight: 400;
+    line-height: 1.7;
+    color: #5a5870;
+    margin: 0 0 2.5rem;
+    max-width: 420px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================================
+   REASONS LIST
+   ============================================================ */
 .reasons-list {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    z-index: 1;
 }
 
+/* ── Reason item ── */
 .reason-item {
     display: flex;
     align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    gap: 1.25rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(39, 35, 67, 0.07);
+    transition: all 0.25s ease;
+    cursor: default;
 }
 
-.reason-icon {
-    font-size: 2rem;
+.reason-item:last-child {
+    border-bottom: none;
+}
+
+.reason-item:hover .reason-icon-wrap {
+    background: #00b34b;
+}
+
+.reason-item:hover .reason-icon-wrap i {
+    color: #ffffff;
+}
+
+.reason-item:hover .reason-title {
+    color: #00b34b;
+}
+
+/* ── Icon ── */
+.reason-icon-wrap {
+    width: 46px;
+    height: 46px;
+    border-radius: 10px;
+    background: rgba(0, 179, 75, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.3s ease;
+}
+
+.reason-icon-wrap i {
+    font-size: 1.2rem;
+    color: #00b34b;
+    transition: color 0.3s ease;
+}
+
+/* Emoji fallback */
+.reason-icon-emoji {
+    font-size: 1.4rem;
     line-height: 1;
 }
 
+/* ── Text ── */
+.reason-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding-top: 2px;
+}
+
 .reason-title {
-    font-size: 1.2rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem;
     font-weight: 700;
-    color: #333;
-    margin-bottom: 0.3rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #272343;
+    line-height: 1.2;
+    transition: color 0.25s ease;
 }
 
 .reason-subcontent {
-    font-size: 1rem;
-    color: #555;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.65;
+    color: #6b6885;
 }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+    .why-trust-content-section {
+        padding: 4rem 2.5rem;
+    }
+}
+
 @media (max-width: 768px) {
     .why-trust-us-container {
-        display: block;
-        height: auto;
+        grid-template-columns: 1fr;
+        min-height: auto;
     }
 
     .why-trust-image-section {
-        height: 40vh;
+        height: 45vw;
+        min-height: 240px;
+    }
+
+    .why-image-badge {
+        bottom: 1.25rem;
+        left: 1.25rem;
+        padding: 0.75rem 1rem;
+    }
+
+    .why-image-badge-number {
+        font-size: 1.8rem;
     }
 
     .why-trust-content-section {
-        max-height: none;
-        overflow-y: visible;
-        padding: 0rem 1.5rem;
+        padding: 3rem 1.5rem 2.5rem;
+    }
+
+    .why-trust-subheading {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .why-trust-image-section {
+        height: 55vw;
     }
 }
