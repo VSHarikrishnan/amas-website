@@ -1,52 +1,68 @@
-import React from 'react';
+// src/pages/TeamLegacy/TeamLegacy.jsx
+// ============================================================
+// TEAM LEGACY — Adventure NGO
+// Switch import to '../../api/api' when backend is ready.
+// ============================================================
+
+import React, { useEffect, useState } from 'react';
 import CountUp from 'react-countup';
-import './TeamLegacy.css'; // Import CSS styling
+import { fetchTeamLegacyData } from '../../api/MockData';
+import './TeamLegacy.css';
 
 const TeamLegacy = () => {
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        fetchTeamLegacyData()
+            .then(setData)
+            .catch((err) => console.error('[TeamLegacy] Data load failed:', err));
+    }, []);
+
+    if (!data) return null;
+
+    const { eyebrow, heading, body, features, stats } = data;
+
     return (
         <section className="team-legacy-section">
-                <div className="legacy-row">
-                    {/* Experience Content Left */}
-                    <div className="experience-content">
-                        <div className="section-title">
-                            <h2>
-                                <span className="thin"> The most </span>
-                                Experienced
-                                <span className="thin"> team you can get </span>
-                            </h2>
-                        </div>
-                        <p>
-                            With nearly 2 decades in adventure sports, rest assured that you
-                            are in safe hands. Having conducted hundreds of events across
-                            India, we know how to deal with every terrain, and every
-                            situation.
-                        </p>
+            <div className="legacy-row">
+
+                {/* ── LEFT: Text content ── */}
+                <div className="experience-content">
+                    <span className="legacy-eyebrow">{eyebrow}</span>
+
+                    <div className="section-title">
+                        <h2
+                            dangerouslySetInnerHTML={{ __html: heading }}
+                        />
                     </div>
 
-                    {/* Activities Grid Right */}
-                    <div className="activities">
-                        <div className="activity">
-                            <i className="fa-solid fa-house-flag"></i>
-                            <h2 className="counter-number"><CountUp end={3200} duration={3} />+</h2>
-                            <p>Adventurers</p>
-                        </div>
-                        <div className="activity">
-                            <i className="fa-solid fa-tents"></i>
-                            <h2 className="counter-number"><CountUp end={200} duration={3} />+</h2>
-                            <p>Nights Camped</p>
-                        </div>
-                        <div className="activity">
-                            <i className="fa-solid fa-map-location"></i>
-                            <h2 className="counter-number"><CountUp end={42} duration={3} />+</h2>
-                            <p>Locations</p>
-                        </div>
-                        <div className="activity">
-                            <i className="fa-solid fa-people-roof"></i>
-                            <h2 className="counter-number"><CountUp end={100} duration={3} />+</h2>
-                            <p>Community Events</p>
-                        </div>
-                    </div>
+                    <p>{body}</p>
+
+                    {/* Feature bullets */}
+                    {features?.length > 0 && (
+                        <ul className="legacy-features">
+                            {features.map((f, i) => (
+                                <li key={i} className="legacy-feature">{f}</li>
+                            ))}
+                        </ul>
+                    )}
                 </div>
+
+                {/* ── RIGHT: Stats grid ── */}
+                <div className="activities">
+                    {stats.map((stat) => (
+                        <div key={stat.id} className="activity">
+                            <i className={stat.icon} />
+                            <h2 className="counter-number">
+                                <CountUp end={stat.value} duration={3} separator="," />
+                                {stat.suffix}
+                            </h2>
+                            <p>{stat.label}</p>
+                        </div>
+                    ))}
+                </div>
+
+            </div>
         </section>
     );
 };

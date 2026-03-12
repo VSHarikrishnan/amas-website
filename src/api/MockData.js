@@ -479,7 +479,25 @@ export const MOCK_OFFERED_ACTIVITIES = {
         },
     ],
 };
-
+// ============================================================
+// TEAM LEGACY
+// ============================================================
+export const MOCK_TEAM_LEGACY = {
+    eyebrow: "Nearly 2 Decades of Excellence",
+    heading: `<span class="thin">The most</span>Experienced<span class="thin">team you can get</span>`,
+    body: "With nearly 2 decades in adventure sports, rest assured that you are in safe hands. Having conducted hundreds of events across India, we know how to deal with every terrain, and every situation.",
+    features: [
+        "Certified mountaineers & wilderness first responders",
+        "Conducted events across 14 districts of Kerala",
+        "Trusted by schools, colleges & corporates since 2006",
+    ],
+    stats: [
+        { id: 1, icon: "fa-solid fa-house-flag", value: 3200, suffix: "+", label: "Adventurers" },
+        { id: 2, icon: "fa-solid fa-tents", value: 200, suffix: "+", label: "Nights Camped" },
+        { id: 3, icon: "fa-solid fa-map-location", value: 42, suffix: "+", label: "Locations" },
+        { id: 4, icon: "fa-solid fa-people-roof", value: 100, suffix: "+", label: "Community Events" },
+    ],
+};
 
 // ============================================================
 // MOCK FUNCTIONS
@@ -505,3 +523,4 @@ export async function submitContactForm(data) {
 export async function fetchLandingData() { return MOCK_LANDING; }
 export async function fetchHomeData() { return MOCK_HOME; }
 export async function fetchOfferedActivities() { return MOCK_OFFERED_ACTIVITIES; }
+export async function fetchTeamLegacyData() { return MOCK_TEAM_LEGACY; }

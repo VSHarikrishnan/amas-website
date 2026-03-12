@@ -49,7 +49,7 @@ export const ENDPOINTS = {
     GET_LANDING: "/landing/get_landing",
 
     GET_OFFERED_ACTIVITIES: "/activities/get_offered_activities",
-
+    GET_TEAM_LEGACY: "/team/get_team_legacy",
 
 };
 
@@ -154,4 +154,9 @@ export async function fetchLandingData() {
 // OFFERED ACTIVITIES
 export async function fetchOfferedActivities() {
     return apiRequest(ENDPOINTS.GET_OFFERED_ACTIVITIES);
+}
+
+// TEAM LEGACY
+export async function fetchTeamLegacyData() {
+    return apiRequest(ENDPOINTS.GET_TEAM_LEGACY);
 }

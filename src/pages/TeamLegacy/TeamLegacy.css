@@ -1,136 +1,285 @@
+/* src/pages/TeamLegacy/TeamLegacy.css */
+/* ============================================================
+   TEAM LEGACY — Adventure NGO Design System
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@300;400;500&display=swap');
+
+/* ============================================================
+   SECTION
+   ============================================================ */
 .team-legacy-section {
-    padding: 2rem 1rem;
-    background-color: #f9f9f9;
-    width: 100%;
+    padding: 6rem 2rem;
+    background: #f5f4f8;
+    position: relative;
+    overflow: hidden;
     box-sizing: border-box;
-    overflow-x: hidden;
 }
 
-/* Flex container for desktop row layout */
+/* Large ghost text watermark */
+.team-legacy-section::before {
+    content: 'LEGACY';
+    position: absolute;
+    top: 50%;
+    left: 0rem;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(8rem, 18vw, 16rem);
+    letter-spacing: 0.06em;
+    color: rgba(39, 35, 67, 0.04);
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+    line-height: 1;
+}
+
+/* ============================================================
+   ROW LAYOUT
+   ============================================================ */
 .legacy-row {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 2rem;
+    align-items: center;
+    gap: 5rem;
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
-/* Left side content */
+/* ============================================================
+   LEFT — TEXT CONTENT
+   ============================================================ */
 .experience-content {
-    flex: 1 1 48%;
-    text-align: left;
-    padding: 1rem;
+    flex: 1 1 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
     box-sizing: border-box;
 }
 
-.section-title h2 {
-    font-size: 2.5rem;
-    color: #272343;
-    font-family: 'Segoe UI', sans-serif;
-    font-weight: 600;
+/* Eyebrow */
+.legacy-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #00b34b;
     margin-bottom: 1rem;
 }
 
-.section-title .thin {
+.legacy-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    background: #00b34b;
+    border-radius: 2px;
+}
+
+/* Heading */
+.section-title h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: 0.02em;
+    color: #272343;
+    margin: 0 0 1.5rem;
+}
+
+.section-title h2 .thin {
+    display: block;
+    font-family: 'Barlow', sans-serif;
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
     font-weight: 300;
-    color: #444;
+    letter-spacing: 0.04em;
+    color: #5a5870;
+    text-transform: none;
+    margin-bottom: 0.3rem;
 }
 
+.section-title h2 .thin:last-child {
+    margin-top: 0.3rem;
+    margin-bottom: 0;
+}
+
+/* Body text */
 .experience-content p {
-    font-size: 1.05rem;
-    color: #333;
-    line-height: 1.6;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.75;
+    color: #5a5870;
+    margin: 0 0 1.75rem;
+    max-width: 480px;
 }
 
-/* Right side: activities in 2x2 grid */
+/* Feature list */
+.legacy-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.legacy-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: #272343;
+}
+
+.legacy-feature::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #00b34b;
+    flex-shrink: 0;
+}
+
+/* ============================================================
+   RIGHT — STATS GRID
+   ============================================================ */
 .activities {
     flex: 1 1 48%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    gap: 1.25rem;
     box-sizing: border-box;
 }
 
-/* Activity cards */
+/* Stat card */
 .activity {
     background: #ffffff;
-    border-radius: 12px;
-    padding: 1.5rem 1.25rem;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-    transition: all 0.3s ease;
+    border: 1px solid rgba(39, 35, 67, 0.07);
+    border-radius: 10px;
+    padding: 2rem 1.5rem;
+    text-align: left;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid transparent;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Green bottom sweep */
+.activity::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #00b34b;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .activity:hover {
-    background-color: #f0f8ff;
-    border-color: #3e3b85;
     transform: translateY(-5px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 16px 40px rgba(39, 35, 67, 0.1);
+    border-color: rgba(0, 179, 75, 0.2);
 }
 
+.activity:hover::after {
+    transform: scaleX(1);
+}
+
+/* Icon */
 .activity i {
-    font-size: 2.75rem;
-    color: #3e3b85;
-    margin-bottom: 0.75rem;
-    transition: color 0.3s ease;
+    font-size: 3rem;
+    color: #00b34b;
+    margin-bottom: 1.1rem;
+    transition: transform 0.3s ease;
 }
 
 .activity:hover i {
-    color: #272343;
+    transform: scale(1.15);
 }
 
+/* Counter number */
 .counter-number {
-    font-size: 2.25rem;
-    font-weight: 700;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
     color: #272343;
-    margin: 0.5rem 0;
+    line-height: 1;
+    margin: 0 0 0.4rem;
 }
 
+/* Label */
 .activity p {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #333;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #5a5870;
     margin: 0;
-    line-height: 1.4;
-    font-family: 'Prompt', sans-serif;
+    line-height: 1.3;
 }
 
-/* Responsive: stack vertically */
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+    .legacy-row {
+        gap: 3rem;
+    }
+}
+
 @media (max-width: 768px) {
+    .team-legacy-section {
+        padding: 4rem 1.25rem;
+    }
+
     .legacy-row {
         flex-direction: column;
-        align-items: stretch;
-        gap: .5rem;
+        gap: 2.5rem;
     }
 
     .experience-content,
     .activities {
         flex: 1 1 100%;
-        padding: 0;
+        width: 100%;
+    }
+
+    .experience-content p {
+        max-width: 100%;
     }
 
     .section-title h2 {
-        font-size: 2rem;
-    }
-
-    .activity p {
-        font-size: 1rem;
-    }
-
-    .counter-number {
-        font-size: 2rem;
+        font-size: 2.6rem;
     }
 
     .activities {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
+    }
+
+    .activity {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .counter-number {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .activities {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
