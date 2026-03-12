@@ -574,6 +574,32 @@ export const MOCK_WHY_US = {
         },
     ],
 };
+
+// ============================================================
+// ABOUT US
+// ============================================================
+export const MOCK_ABOUT = {
+    eyebrow: "Est. 2006 · Kerala, India",
+    heading: "Our <span>Journey</span>",
+    paragraphs: [
+        "Adventure Mountaineering and Survival Kerala (AMAS) was born from a deep love for the mountains and the spirit of adventure. What started as a small group of outdoor enthusiasts has grown into one of Kerala's most respected NGOs in mountaineering and adventure sports.",
+        "The motivation was simple – to reconnect people with nature, teach survival skills, and build mental and physical resilience through outdoor challenges. We've since trained hundreds of participants and organised numerous treks, rope courses, and mountaineering expeditions.",
+        "Today, AMAS continues to inspire people of all ages to break limits, discover their strength, and cultivate discipline and confidence. We are proud of the lives we've touched and the trails we've blazed together.",
+    ],
+    mission: {
+        title: "Inspire. Empower. Conquer.",
+        body: "To make adventure sports accessible to all, nurture a culture of safety and discipline, and build a community of confident, nature-loving individuals across Kerala and beyond.",
+    },
+    values: [
+        "Safety First", "Community Driven", "Certified Training",
+        "Nature Respect", "Inclusive", "Affordable",
+    ],
+    team: {
+        eyebrow: "The People Behind AMAS",
+        heading: "Meet Our <span>Team</span>",
+    },
+};
+
 // ============================================================
 // MOCK FUNCTIONS
 // ------------------------------------------------------------
@@ -600,3 +626,4 @@ export async function fetchHomeData() { return MOCK_HOME; }
 export async function fetchOfferedActivities() { return MOCK_OFFERED_ACTIVITIES; }
 export async function fetchTeamLegacyData() { return MOCK_TEAM_LEGACY; }
 export async function fetchWhyUsData() { return MOCK_WHY_US; }
+export async function fetchAboutData() { return MOCK_ABOUT; }

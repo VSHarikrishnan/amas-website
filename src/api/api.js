@@ -13,7 +13,7 @@
 // ============================================================
 
 export const BASE_URL =
-    import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+    "http://localhost:8080";
 
 // ── All endpoint paths in one place ──────────────────────────
 export const ENDPOINTS = {
@@ -54,6 +54,8 @@ export const ENDPOINTS = {
     GET_TEAM_LEGACY: "/team/get_team_legacy",
 
     GET_WHY_US: "/whyus/get_why_us",
+
+    GET_ABOUT: "/about/get_about",
 };
 
 // HOME PAGE
@@ -167,4 +169,9 @@ export async function fetchTeamLegacyData() {
 // WHY US
 export async function fetchWhyUsData() {
     return apiRequest(ENDPOINTS.GET_WHY_US);
+}
+
+// ABOUT US
+export async function fetchAboutData() {
+    return apiRequest(ENDPOINTS.GET_ABOUT);
 }

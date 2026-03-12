@@ -1,112 +1,371 @@
-.about-us-amas {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    padding: 2rem 8rem;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f9f9f9;
+/* src/pages/AboutUs/AboutUs.css */
+/* ============================================================
+   ABOUT US — Adventure NGO Design System
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@300;400;500&display=swap');
+
+/* ============================================================
+   SECTION
+   ============================================================ */
+.about-us-section {
+    background: #f5f4f8;
+    padding: 6rem 2rem 5rem;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
+/* Ghost watermark */
+.about-us-section::before {
+    content: 'AMAS';
+    position: absolute;
+    top: 50%;
+    right: -1rem;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(8rem, 20vw, 18rem);
+    letter-spacing: 0.06em;
+    color: rgba(39, 35, 67, 0.04);
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+    line-height: 1;
+}
+
+.about-us-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================================
+   MAIN ROW — Story/Mission (left) + Team (right) side by side
+   ============================================================ */
+.about-top-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+/* ── Story (left) ── */
 .amas-story {
-    padding-right: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.about-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #00b34b;
+    margin-bottom: 1rem;
+}
+
+.about-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    background: #00b34b;
+    border-radius: 2px;
 }
 
 .amas-story h2 {
-    font-size: 2rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.4rem, 4vw, 3.4rem);
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: 0.02em;
     color: #272343;
-    margin-bottom: 1.5rem;
+    margin: 0 0 1.5rem;
+}
+
+.amas-story h2 span {
+    color: #00b34b;
 }
 
 .amas-story p {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.97rem;
+    font-weight: 400;
     line-height: 1.8;
-    margin-bottom: 1rem;
-    color: #444;
+    color: #5a5870;
+    margin: 0 0 1rem;
 }
 
-.amas-team {
+.amas-story p:last-of-type {
+    margin-bottom: 0;
+}
+
+/* ── Mission / values (right) ── */
+.amas-mission {
     display: flex;
     flex-direction: column;
-    max-height: 100vh;
+    padding-top: 0.25rem;
+}
+
+.mission-card {
+    background: #272343;
+    border-radius: 10px;
+    padding: 2rem 2rem 1.75rem;
+    margin-bottom: 1rem;
+    position: relative;
     overflow: hidden;
 }
 
-.amas-team h2 {
-    font-size: 2rem;
-    color: #272343;
-    margin-bottom: 1.5rem;
-    text-align: center;
+.mission-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 4px;
+    background: #00b34b;
+    border-radius: 10px 0 0 10px;
 }
 
-/* Team grid styling */
+.mission-card-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #00b34b;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.mission-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: #ffffff;
+    margin: 0 0 0.6rem;
+    line-height: 1;
+}
+
+.mission-card p {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.65);
+    margin: 0;
+}
+
+/* Value pills */
+.mission-values {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.mission-value-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #272343;
+    background: rgba(0, 179, 75, 0.1);
+    border: 1px solid rgba(0, 179, 75, 0.25);
+    border-radius: 20px;
+    padding: 4px 12px;
+}
+
+/* ============================================================
+   TEAM SECTION
+   ============================================================ */
+.amas-team {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.team-header-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #00b34b;
+    margin-bottom: 0.75rem;
+}
+
+.team-header-eyebrow::before,
+.team-header-eyebrow::after {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 2px;
+    background: #00b34b;
+    border-radius: 2px;
+}
+
+.team-header h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    color: #272343;
+    margin: 0;
+}
+
+.team-header h2 span {
+    color: #00b34b;
+}
+
+/* ── Grid ── */
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-    gap: 1.2rem;
-    overflow-y: auto;
-    padding: 8px;
-    flex: 1;
-    max-height: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1.25rem;
 }
 
-/* Scrollbar (optional visibility) */
-.team-grid::-webkit-scrollbar {
-    width: 6px;
-    display: none;
-}
-
-.team-grid::-webkit-scrollbar-thumb {
-    background-color: #ccc;
-    border-radius: 3px;
-}
-
-/* Individual team card */
+/* ── Card ── */
 .team-card {
-    background: white;
-    border-radius: 8px;
-    padding: 0.5rem;
+    background: #ffffff;
+    border: 1px solid rgba(39, 35, 67, 0.07);
+    border-radius: 10px;
+    padding: 1.5rem 1rem 1.25rem;
     text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.team-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #00b34b;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .team-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(39, 35, 67, 0.1);
+    border-color: rgba(0, 179, 75, 0.2);
+}
+
+.team-card:hover::after {
+    transform: scaleX(1);
+}
+
+/* Avatar */
+.team-img-wrap {
+    position: relative;
+    margin-bottom: 1rem;
 }
 
 .team-img {
-    width: 80px;
-    height: 80px;
+    width: 72px;
+    height: 72px;
     object-fit: cover;
     border-radius: 50%;
-    margin-bottom: 0.6rem;
+    border: 3px solid rgba(0, 179, 75, 0.2);
+    transition: border-color 0.3s ease;
+    display: block;
 }
 
+.team-card:hover .team-img {
+    border-color: #00b34b;
+}
+
+/* Info */
 .team-info h4 {
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: 1rem;
-    font-weight: bold;
-    color: #333;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #272343;
+    margin: 0 0 3px;
+    line-height: 1.2;
 }
 
 .team-info p {
-    font-size: 0.85rem;
-    color: #777;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: #00b34b;
+    margin: 0;
+    letter-spacing: 0.03em;
 }
 
-/* Responsive - Mobile Layout */
+/* Empty state */
+.team-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.95rem;
+    color: #9896b0;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+    .about-top-row {
+        gap: 2.5rem;
+    }
+}
+
 @media (max-width: 768px) {
-    .about-us-amas {
-        grid-template-columns: 1fr;
-        padding: 0rem 1rem;
-        gap: 0.5rem;
+    .about-us-section {
+        padding: 4rem 1.25rem 3rem;
     }
 
-    .amas-story,
-    .amas-team {
-        padding: 0;
-        max-height: none;
+    /* Stack: story/mission on top, team below */
+    .about-top-row {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
     }
 
     .team-grid {
-        max-height: 80vh;
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 1rem;
+    }
+
+    .team-img {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .team-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.75rem;
+    }
+
+    .team-card {
+        padding: 1rem 0.75rem;
     }
 }
