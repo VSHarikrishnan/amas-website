@@ -5,7 +5,7 @@ import './Events.css';
 // import treksData from '../Treks/TrekData';
 import { sortTreks, filterTreks } from './EventsLogic';
 import TrekCard from '../../components/TrekCard/TrekCard';
-import { fetchAllTrekData } from '../../api/api';
+import { fetchAllTrekData } from '../../api/Api';
 import useTrekDataStore from '../../store/trekDataStore';
 
 const Events = () => {
