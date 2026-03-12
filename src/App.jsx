@@ -5,7 +5,7 @@ import ScrollHomePage from './pages/Home/ScrollHomePage';
 import TrekDetails from './pages/TrekDetails/TrekDetails';
 import ScrollToTop from './Utils/ScrollToTop';
 import TrekOverview from './pages/TrekDetails/TrekOverview';
-import TrekOverviewNew from './pages/TrekDetailsNew/TrekOverviewNew';
+import TrekOverviewNew from './pages/TrekDetails/TrekOverviewNew';
 
 const App = () => {
   return (

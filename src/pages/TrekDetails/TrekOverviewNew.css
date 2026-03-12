@@ -1,0 +1,652 @@
+/* src/pages/TrekOverviewNew/TrekOverviewNew.css */
+/* ============================================================
+   TREK OVERVIEW — Adventure NGO Design System
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@300;400;500&display=swap');
+
+/* ============================================================
+   GLOBAL PAGE
+   ============================================================ */
+* {
+    box-sizing: border-box;
+}
+
+.trek-overview-page {
+    background: #f5f4f8;
+    min-height: 100vh;
+    font-family: 'Barlow', sans-serif;
+    color: #272343;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Carousel fills full height */
+.hero-section .carousel-root,
+.hero-section .carousel,
+.hero-section .slider-wrapper,
+.hero-section .slider,
+.hero-section .slide {
+    height: 100%;
+}
+
+.custom-carousel-slide {
+    height: 100vh;
+    position: relative;
+}
+
+.custom-carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Dark gradient overlay */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+            rgba(26, 23, 48, 0.3) 0%,
+            rgba(26, 23, 48, 0.15) 40%,
+            rgba(26, 23, 48, 0.7) 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Trek name banner */
+.hero-banner {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    padding: 2.5rem 3rem 2rem;
+    background: linear-gradient(to top, rgba(26, 23, 48, 0.9) 0%, transparent 100%);
+}
+
+.hero-banner h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: #ffffff;
+    margin: 0 0 0.4rem;
+    line-height: 1;
+}
+
+.hero-banner-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #00b34b;
+}
+
+/* ============================================================
+   BASIC DETAILS STRIP
+   ============================================================ */
+.basic-details-section {
+    background: #272343;
+    padding: 0;
+    position: relative;
+    z-index: 10;
+}
+
+.basic-details-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+}
+
+.basic-detail-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.4rem 1rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.07);
+    transition: background 0.25s ease;
+    cursor: default;
+}
+
+.basic-detail-card:last-child {
+    border-right: none;
+}
+
+.basic-detail-card:hover {
+    background: rgba(0, 179, 75, 0.1);
+}
+
+.basic-detail-icon {
+    width: 32px;
+    height: 32px;
+    margin: 0 auto 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.basic-detail-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: brightness(0) invert(1) opacity(0.7);
+}
+
+.basic-detail-icon i {
+    font-size: 1.2rem;
+    color: #00b34b;
+}
+
+.basic-detail-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 0 0 3px;
+}
+
+.basic-detail-value {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.02em;
+    margin: 0;
+}
+
+/* ============================================================
+   CONTENT AREA WRAPPER
+   ============================================================ */
+.trek-content-area {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ============================================================
+   SHARED SECTION CARD
+   ============================================================ */
+.trek-section-card {
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid rgba(39, 35, 67, 0.07);
+    overflow: hidden;
+}
+
+.trek-section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.5rem 2rem 0;
+    margin-bottom: 1.25rem;
+}
+
+.trek-section-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(0, 179, 75, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.trek-section-icon i {
+    font-size: 1rem;
+    color: #00b34b;
+}
+
+.trek-section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: #272343;
+    margin: 0;
+    line-height: 1;
+}
+
+.trek-section-body {
+    padding: 0 2rem 2rem;
+}
+
+/* ============================================================
+   OVERVIEW — Key Info Grid
+   ============================================================ */
+.overview-basic-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    background: #f5f4f8;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1.75rem;
+}
+
+.overview-grid-item {
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid rgba(39, 35, 67, 0.06);
+    border-right: 1px solid rgba(39, 35, 67, 0.06);
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.overview-grid-item:nth-child(3n) {
+    border-right: none;
+}
+
+.overview-grid-key {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #9896b0;
+    flex-shrink: 0;
+}
+
+.overview-grid-val {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: #272343;
+}
+
+/* ============================================================
+   HIGHLIGHTS
+   ============================================================ */
+.highlights-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.highlights-list li {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.88rem;
+    color: #5a5870;
+    line-height: 1.5;
+    padding: 0.4rem 0 0.4rem 1rem;
+    position: relative;
+}
+
+.highlights-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.65rem;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #00b34b;
+}
+
+/* ============================================================
+   OVERVIEW DETAILS (expandable sub-sections)
+   ============================================================ */
+.overview-sub {
+    margin-bottom: 1.25rem;
+}
+
+.overview-sub:last-child {
+    margin-bottom: 0;
+}
+
+.overview-sub-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #272343;
+    margin: 0 0 0.6rem;
+    padding-left: 0.75rem;
+    border-left: 3px solid #00b34b;
+}
+
+.overview-sub ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.overview-sub li {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9rem;
+    color: #5a5870;
+    line-height: 1.65;
+    padding-left: 1rem;
+    position: relative;
+}
+
+.overview-sub li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: #00b34b;
+    font-size: 0.75rem;
+    top: 0.1rem;
+}
+
+/* Divider between sections */
+.section-divider {
+    height: 1px;
+    background: rgba(39, 35, 67, 0.07);
+    margin: 1.25rem 0;
+}
+
+/* ============================================================
+   PARTICIPANT CRITERIA
+   ============================================================ */
+.participant-block {
+    margin-bottom: 1.25rem;
+}
+
+.participant-block:last-child {
+    margin-bottom: 0;
+}
+
+.participant-subtitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #272343;
+    margin: 0 0 0.6rem;
+    padding-left: 0.75rem;
+    border-left: 3px solid #00b34b;
+}
+
+.participant-block ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.participant-block li {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9rem;
+    color: #5a5870;
+    line-height: 1.65;
+    padding-left: 1rem;
+    position: relative;
+}
+
+.participant-block li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #00b34b;
+}
+
+/* ============================================================
+   ITINERARY
+   ============================================================ */
+.itinerary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+/* Vertical timeline line */
+.itinerary-list::before {
+    content: '';
+    position: absolute;
+    left: 0.35rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 2px;
+    background: linear-gradient(to bottom, #00b34b, rgba(0, 179, 75, 0.15));
+    border-radius: 2px;
+}
+
+.itinerary-day {
+    position: relative;
+    padding: 0 0 1.5rem 1.25rem;
+}
+
+.itinerary-day:last-child {
+    padding-bottom: 0;
+}
+
+/* Timeline dot */
+.itinerary-day::before {
+    content: '';
+    position: absolute;
+    left: -1.15rem;
+    top: 0.4rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #00b34b;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 0 2px #00b34b;
+}
+
+.itinerary-subtitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #272343;
+    margin: 0 0 0.6rem;
+}
+
+.itinerary-day ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.itinerary-day li {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.88rem;
+    color: #6b6885;
+    line-height: 1.6;
+}
+
+/* ============================================================
+   TABS (Terms & Carry)
+   ============================================================ */
+.trek-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.trek-tab-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.5rem 1.1rem;
+    border-radius: 20px;
+    border: 1.5px solid rgba(39, 35, 67, 0.15);
+    background: transparent;
+    color: #6b6885;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.trek-tab-btn:hover {
+    border-color: #00b34b;
+    color: #00b34b;
+}
+
+.trek-tab-btn.active {
+    background: #272343;
+    color: #ffffff;
+    border-color: #272343;
+}
+
+.trek-tab-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.terms-block {
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(39, 35, 67, 0.07);
+}
+
+.terms-block:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.terms-subtitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #272343;
+    margin: 0 0 0.6rem;
+    padding-left: 0.75rem;
+    border-left: 3px solid #00b34b;
+}
+
+.terms-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.terms-list li {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.88rem;
+    color: #5a5870;
+    line-height: 1.65;
+    padding-left: 1rem;
+    position: relative;
+}
+
+.terms-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #00b34b;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+    .basic-details-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .overview-basic-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .highlights-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-banner {
+        padding: 2rem 1.5rem 1.5rem;
+    }
+
+    .trek-content-area {
+        padding: 2rem 1.25rem 3rem;
+        gap: 1rem;
+    }
+
+    .trek-section-header {
+        padding: 1.25rem 1.5rem 0;
+    }
+
+    .trek-section-body {
+        padding: 0 1.5rem 1.5rem;
+    }
+
+    .overview-basic-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .basic-details-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .basic-details-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .basic-detail-card {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .overview-basic-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .overview-grid-item {
+        border-right: none;
+    }
+
+    .trek-section-header {
+        padding: 1rem 1.25rem 0;
+    }
+
+    .trek-section-body {
+        padding: 0 1.25rem 1.25rem;
+    }
+}
