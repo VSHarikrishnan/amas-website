@@ -17,6 +17,9 @@ export const BASE_URL =
 
 // ── All endpoint paths in one place ──────────────────────────
 export const ENDPOINTS = {
+    
+    GET_HOME: "/home/get_home",
+
     // Treks
     GET_ALL_TREK_DATA: "/treks/get_all_trek_data",
     GET_TREK_DATA: "/treks/get_trek_data",        // + /:id
@@ -43,7 +46,15 @@ export const ENDPOINTS = {
 
     // Contact
     POST_CONTACT_FORM: "/contact/submit",
+    GET_LANDING: "/landing/get_landing",
+
+  
 };
+
+// HOME PAGE
+export async function fetchHomeData() {
+    return apiRequest(ENDPOINTS.GET_HOME);
+}
 
 // ── Generic fetch wrapper ─────────────────────────────────────
 async function apiRequest(endpoint, method = "GET", body = null) {
@@ -129,4 +140,11 @@ export async function fetchOrgStats() {
 // ============================================================
 export async function submitContactForm(formData) {
     return apiRequest(ENDPOINTS.POST_CONTACT_FORM, "POST", formData);
+}
+
+// ============================================================
+// LANDING / HERO
+// ============================================================
+export async function fetchLandingData() {
+    return apiRequest(ENDPOINTS.GET_LANDING);
 }

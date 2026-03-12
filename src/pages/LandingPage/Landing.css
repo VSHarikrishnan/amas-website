@@ -1,90 +1,466 @@
-.landing {
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    padding: 0;
+/* src/components/Landing/landing.css */
+/* ============================================================
+   LANDING / HERO — Adventure NGO Design System
+   Fonts: Bebas Neue (display) | Barlow Condensed (labels) | Barlow (body)
+   Colors: #272343 primary | #00b34b accent | white text
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500&display=swap');
+
+/* ── Root variables (shared with navbar) ─────────────────── */
+:root {
+    --brand-primary: rgba(39, 35, 67, 1);
+    --brand-dark: rgba(26, 23, 48, 1);
+    --brand-accent: #00b34b;
+    --brand-accent-dk: #009140;
+    --brand-white: #ffffff;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.carousel-root,
-.carousel,
-.carousel-slider,
-.carousel .slider-wrapper,
-.carousel .slide,
-.carousel .carousel-slide,
-.carousel .carousel-slide img,
+/* ============================================================
+   WRAPPER
+   ============================================================ */
+.landing {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    font-family: 'Barlow', sans-serif;
+}
+
+/* ============================================================
+   CAROUSEL OVERRIDES
+   ============================================================ */
+.landing .carousel-root,
+.landing .carousel,
+.landing .carousel-slider,
+.landing .slider-wrapper,
+.landing .slider,
+.landing .slide {
+    height: 100vh !important;
+    min-height: 600px;
+}
+
+.landing .slide {
+    background: var(--brand-dark);
+}
+
 .custom-carousel-image {
     width: 100%;
-    height: 100vh !important;
+    height: 100vh;
+    min-height: 600px;
     object-fit: cover;
+    object-position: center;
     display: block;
+    /* Slight dim so text pops without a heavy overlay */
+    filter: brightness(0.72);
+    transform: scale(1.04);
+    transition: transform 8s ease-out;
 }
 
-/* Remove unwanted padding or margins */
-.carousel .carousel-slide {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
+/* Ken-Burns zoom on active slide */
+.landing .selected .custom-carousel-image {
+    transform: scale(1);
 }
 
-/* Overlay for text content */
+/* ── Hide default carousel UI ── */
+.landing .control-dots {
+    display: none !important;
+}
+
+.landing .control-status {
+    display: none !important;
+}
+
+.landing .thumbs-wrapper {
+    display: none !important;
+}
+
+/* ── Custom prev/next arrows ── */
+.landing .control-arrow {
+    z-index: 10;
+    width: 48px;
+    height: 48px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(39, 35, 67, 0.55) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 50% !important;
+    opacity: 0;
+    transition: var(--transition);
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 12px;
+}
+
+.landing:hover .control-arrow {
+    opacity: 1;
+}
+
+.landing .control-arrow:hover {
+    background: var(--brand-accent) !important;
+    border-color: var(--brand-accent) !important;
+}
+
+.landing .control-prev.control-arrow::before {
+    border-right-color: white !important;
+    border-width: 6px !important;
+}
+
+.landing .control-next.control-arrow::before {
+    border-left-color: white !important;
+    border-width: 6px !important;
+}
+
+/* ============================================================
+   HERO OVERLAY
+   ============================================================ */
 .hero-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
-    color: white;
+    inset: 0;
+    z-index: 5;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-start;
+    padding: 0 8vw;
+
+    /* Left-edge dark gradient so text is always readable */
+    background: linear-gradient(105deg,
+            rgba(26, 23, 48, 0.82) 0%,
+            rgba(26, 23, 48, 0.55) 45%,
+            rgba(26, 23, 48, 0.1) 75%,
+            transparent 100%);
+}
+
+/* ── Label above title ── */
+.hero-label {
+    display: inline-flex;
     align-items: center;
-    text-align: left;
-    padding: 0 20px;
+    gap: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--brand-accent);
+    margin-bottom: 1rem;
+
+    /* Entrance animation */
+    opacity: 0;
+    transform: translateY(16px);
+    animation: heroFadeUp 0.7s 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
+.hero-label::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 2px;
+    background: var(--brand-accent);
+    border-radius: 2px;
+}
+
+/* ── Main title ── */
 .hero-title {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.2rem, 8vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: 0.03em;
+    color: var(--brand-white);
+    margin: 0 0 0.5rem;
+    max-width: 14ch;
+
+    opacity: 0;
+    transform: translateY(20px);
+    animation: heroFadeUp 0.7s 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-.hero-subtitle {
-    font-size: 1.3rem;
-    margin-bottom: 1.5rem;
-    max-width: 600px;
-}
-
-.hero-button {
-    background-color: #2e8bc0;
-    border: none;
-    padding: 12px 28px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease;
-}
-
-.hero-button:hover {
-    background-color: #186e9f;
-}
-
-/* Remove carousel indicators (optional) */
-.carousel .control-dots {
-    display: none;
-}
-
-.custom-carousel-image {
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
+.hero-title span {
+    color: var(--brand-accent);
     display: block;
+}
+
+/* ── Subtitle ── */
+.hero-subtitle {
+    font-family: 'Barlow', sans-serif;
+    font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+    font-weight: 300;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.82);
+    max-width: 480px;
+    margin: 0 0 2.2rem;
+
+    opacity: 0;
+    transform: translateY(20px);
+    animation: heroFadeUp 0.7s 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ── CTA buttons ── */
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+
+    opacity: 0;
+    transform: translateY(20px);
+    animation: heroFadeUp 0.7s 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.hero-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 2rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brand-white);
+    background: var(--brand-accent);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.hero-btn-primary:hover {
+    background: var(--brand-accent-dk);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 179, 75, 0.4);
+}
+
+.hero-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.8rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brand-white);
+    background: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.hero-btn-secondary:hover {
+    border-color: var(--brand-white);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* ── Arrow icon inside button ── */
+.hero-btn-arrow {
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.hero-btn-primary:hover .hero-btn-arrow,
+.hero-btn-secondary:hover .hero-btn-arrow {
+    transform: translateX(4px);
+}
+
+/* ============================================================
+   SLIDE COUNTER (bottom right)
+   ============================================================ */
+.hero-slide-counter {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 8vw;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.6);
+
+    opacity: 0;
+    animation: heroFadeUp 0.7s 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.hero-slide-counter .current {
+    font-size: 1.4rem;
+    font-family: 'Bebas Neue', sans-serif;
+    color: var(--brand-white);
+    line-height: 1;
+}
+
+.hero-slide-counter .divider {
+    width: 24px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* ============================================================
+   SCROLL INDICATOR (bottom centre)
+   ============================================================ */
+.hero-scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+
+    opacity: 0;
+    animation: heroFadeUp 0.7s 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.hero-scroll-mouse {
+    width: 20px;
+    height: 32px;
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    padding-top: 5px;
+}
+
+.hero-scroll-wheel {
+    width: 3px;
+    height: 6px;
+    background: var(--brand-accent);
+    border-radius: 2px;
+    animation: scrollWheel 1.6s ease-in-out infinite;
+}
+
+/* ============================================================
+   DOT INDICATORS (bottom left)
+   ============================================================ */
+.hero-dots {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 8vw;
+    z-index: 6;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+
+    opacity: 0;
+    animation: heroFadeUp 0.7s 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.hero-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    transition: var(--transition);
+}
+
+.hero-dot.active {
+    width: 24px;
+    border-radius: 3px;
+    background: var(--brand-accent);
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes heroFadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scrollWheel {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    60% {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    61% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+    .hero-overlay {
+        padding: 0 6vw;
+        justify-content: flex-end;
+        padding-bottom: 7rem;
+        background: linear-gradient(to top,
+                rgba(26, 23, 48, 0.92) 0%,
+                rgba(26, 23, 48, 0.5) 55%,
+                rgba(26, 23, 48, 0.1) 100%);
+    }
+
+    .hero-title {
+        font-size: clamp(2.8rem, 12vw, 4rem);
+        max-width: 100%;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+        max-width: 100%;
+    }
+
+    .hero-btn-primary,
+    .hero-btn-secondary {
+        padding: 0.7rem 1.4rem;
+        font-size: 0.88rem;
+    }
+
+    .hero-slide-counter {
+        display: none;
+    }
+
+    .hero-scroll-hint {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .hero-btn-primary,
+    .hero-btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
 }

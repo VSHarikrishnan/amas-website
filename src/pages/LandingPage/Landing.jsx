@@ -1,45 +1,131 @@
-// src/components/Landing.jsx
-import React from 'react';
+// src/components/Landing/Landing.jsx
+// ============================================================
+// LANDING / HERO — Adventure NGO
+// Switch import source to '../../api/api' when backend ready.
+// ============================================================
+
+import React, { useState, useEffect, useCallback } from 'react';
 import { Carousel } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Link as RouterLink } from 'react-router-dom';
+import { Link as ScrollLink } from 'react-scroll';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { fetchLandingData } from '../../api/MockData';
 import './landing.css';
 
-const images = [
-    "https://amaskerala.org/assets/images/home/slides/rock-climbing.jpg",
-    "https://amaskerala.org/assets/images/home/slides/commando-bridge.jpg",
-    "https://amaskerala.org/assets/images/home/slides/camp-fire.jpg",
-    "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    'https://images.unsplash.com/photo-1600298882525-1ac025c98b68?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    'https://images.unsplash.com/photo-1542224566-6e85f2e6772f?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-];
-
 const Landing = () => {
+    const [data, setData] = useState(null);
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    // ── Load data ───────────────────────────────────────────
+    useEffect(() => {
+        fetchLandingData()
+            .then(setData)
+            .catch((err) => console.error('[Landing] Data load failed:', err));
+    }, []);
+
+    const handleSlideChange = useCallback((index) => {
+        setCurrentSlide(index);
+    }, []);
+
+    if (!data) return null;
+
+    const { slides, hero } = data;
+    const total = slides.length;
+
     return (
         <div className="landing">
+
+            {/* ── Carousel ── */}
             <Carousel
                 autoPlay
                 infiniteLoop
                 showThumbs={false}
                 showStatus={false}
                 showArrows={true}
-                interval={3000}
-                transitionTime={1000}
-                stopOnHover={true}
+                showIndicators={false}
+                interval={4000}
+                transitionTime={900}
+                stopOnHover={false}
                 swipeable={true}
-                emulateTouch
+                emulateTouch={true}
+                selectedItem={currentSlide}
+                onChange={handleSlideChange}
             >
-                {images.map((img, index) => (
-                    <div key={index} className="custom-carousel-slide">
-                        <img src={img} alt={`Slide ${index}`} className="custom-carousel-image" />
+                {slides.map((slide) => (
+                    <div key={slide.id} className="custom-carousel-slide">
+                        <img
+                            src={slide.image}
+                            alt={slide.alt}
+                            className="custom-carousel-image"
+                        />
                     </div>
                 ))}
             </Carousel>
 
+            {/* ── Hero overlay ── */}
             <div className="hero-overlay">
-                <h1 className="hero-title">Discover the Mountains</h1>
-                <p className="hero-subtitle">Join us for unforgettable treks and mountaineering adventures</p>
-                <button className="hero-button">Book Treks</button>
+
+                {/* Label */}
+                <div className="hero-label">{hero.label}</div>
+
+                {/* Title */}
+                <h1 className="hero-title">
+                    {hero.titleLine1}
+                    <span>{hero.titleLine2}</span>
+                </h1>
+
+                {/* Subtitle */}
+                <p className="hero-subtitle">{hero.subtitle}</p>
+
+                {/* CTAs */}
+                <div className="hero-actions">
+                    <RouterLink to={hero.primaryCta.href} className="hero-btn-primary">
+                        {hero.primaryCta.label}
+                        <span className="hero-btn-arrow">→</span>
+                    </RouterLink>
+
+                    <ScrollLink
+                        to={hero.secondaryCta.target}
+                        smooth={true}
+                        duration={600}
+                        offset={-70}
+                        className="hero-btn-secondary"
+                    >
+                        {hero.secondaryCta.label}
+                        <span className="hero-btn-arrow">↓</span>
+                    </ScrollLink>
+                </div>
             </div>
+
+            {/* ── Custom dot indicators (bottom left) ── */}
+            <div className="hero-dots">
+                {slides.map((_, i) => (
+                    <button
+                        key={i}
+                        className={`hero-dot${currentSlide === i ? ' active' : ''}`}
+                        onClick={() => setCurrentSlide(i)}
+                        aria-label={`Go to slide ${i + 1}`}
+                    />
+                ))}
+            </div>
+
+            {/* ── Slide counter (bottom right) ── */}
+            <div className="hero-slide-counter">
+                <span className="current">
+                    {String(currentSlide + 1).padStart(2, '0')}
+                </span>
+                <span className="divider" />
+                <span>{String(total).padStart(2, '0')}</span>
+            </div>
+
+            {/* ── Scroll hint (bottom centre) ── */}
+            <div className="hero-scroll-hint">
+                <div className="hero-scroll-mouse">
+                    <div className="hero-scroll-wheel" />
+                </div>
+                <span>Scroll</span>
+            </div>
+
         </div>
     );
 };

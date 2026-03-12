@@ -309,6 +309,103 @@ export const MOCK_STATS = {
     districts: 14,
 };
 
+
+
+// ============================================================
+// LANDING / HERO
+// ============================================================
+export const MOCK_LANDING = {
+    slides: [
+        {
+            id: 1,
+            image: "https://amaskerala.org/assets/images/home/slides/rock-climbing.jpg",
+            alt: "Rock climbing adventure",
+        },
+        {
+            id: 2,
+            image: "https://amaskerala.org/assets/images/home/slides/commando-bridge.jpg",
+            alt: "Commando bridge crossing",
+        },
+        {
+            id: 3,
+            image: "https://amaskerala.org/assets/images/home/slides/camp-fire.jpg",
+            alt: "Campfire under the stars",
+        },
+        {
+            id: 4,
+            image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1170&auto=format&fit=crop",
+            alt: "Mountain peak at sunrise",
+        },
+        {
+            id: 5,
+            image: "https://images.unsplash.com/photo-1600298882525-1ac025c98b68?q=80&w=1170&auto=format&fit=crop",
+            alt: "Valley trekking trail",
+        },
+        {
+            id: 6,
+            image: "https://images.unsplash.com/photo-1542224566-6e85f2e6772f?q=80&w=688&auto=format&fit=crop",
+            alt: "Forest adventure trail",
+        },
+    ],
+    hero: {
+        label: "Adventure Awaits",
+        titleLine1: "Conquer",
+        titleLine2: "The Wild",
+        subtitle: "Join us for life-changing treks, climbs, and expeditions across India's most stunning landscapes.",
+        primaryCta: { label: "Explore Treks", href: "/treks" },
+        secondaryCta: { label: "Our Activities", target: "offered-activities" },
+    },
+};
+// ============================================================
+// HOME PAGE
+// ============================================================
+export const MOCK_HOME = {
+    eyebrow: "Est. 2006 · Kerala, India",
+    heading: "Academy for Mountaineering<br/>and <span>Adventure Sports</span>",
+    foundedYear: 2006,
+    paragraphs: [
+        "Since 2006, AMAS Kerala has been providing unparalleled programs and training in adventure sports.",
+        "We guarantee extremely safe, adventure-filled, memorable days with your friends or like-spirited adventurers!",
+    ],
+    cta: { label: "Explore Activities", href: "/treks" },
+    slides: [
+        {
+            id: 1,
+            leftImage: "https://amaskerala.org/assets/images/home/40-adventures/resized/rock-climbing.jpg",
+            leftAlt: "Rock climbing",
+            rightImage: "https://amaskerala.org/assets/images/home/40-adventures/resized/rappeling.jpg",
+            rightAlt: "Rappelling",
+            icon: "fas fa-campground",
+        },
+        {
+            id: 2,
+            leftImage: "https://amaskerala.org/assets/images/home/40-adventures/resized/river-crossing.jpg",
+            leftAlt: "River crossing",
+            rightImage: "https://amaskerala.org/assets/images/home/40-adventures/resized/water-ball.jpg",
+            rightAlt: "Water ball",
+            icon: "fa-solid fa-mountain-sun",
+        },
+        {
+            id: 3,
+            leftImage: "https://amaskerala.org/assets/images/home/40-adventures/resized/sailing.jpg",
+            leftAlt: "Sailing",
+            rightImage: "https://amaskerala.org/assets/images/home/40-adventures/resized/kayaking.jpg",
+            rightAlt: "Kayaking",
+            icon: "fa-solid fa-route",
+        },
+        {
+            id: 4,
+            leftImage: "https://amaskerala.org/assets/images/home/40-adventures/resized/camping.jpg",
+            leftAlt: "Camping",
+            rightImage: "https://amaskerala.org/assets/images/home/40-adventures/resized/parasailing.jpg",
+            rightAlt: "Parasailing",
+            icon: "fa-solid fa-compass",
+        },
+    ],
+};
+
+
+
 // ============================================================
 // MOCK FUNCTIONS
 // ------------------------------------------------------------
@@ -330,3 +427,5 @@ export async function submitContactForm(data) {
     console.log("[Mock] Contact form submitted:", data);
     return { success: true, message: "Thank you! We will get back to you within 24 hours." };
 }
+export async function fetchLandingData() { return MOCK_LANDING; }
+export async function fetchHomeData() { return MOCK_HOME; }
