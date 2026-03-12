@@ -10,7 +10,7 @@
    ============================================================ */
 .offered-activities-section {
     padding: 6rem 2rem 5rem;
-    background: #ffffff;
+    background: #272343;
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
@@ -57,11 +57,11 @@
     align-items: center;
     gap: 8px;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.78rem;
+    font-size: 1rem;
     font-weight: 700;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: #00b34b;
+    color: #ffffff;
     margin-bottom: 1rem;
 }
 
@@ -81,7 +81,7 @@
     font-weight: 400;
     line-height: 1.0;
     letter-spacing: 0.03em;
-    color: #272343;
+    color: rgba(229, 227, 227, 0.55);
     margin: 0 0 1rem;
 }
 
@@ -94,7 +94,7 @@
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.7;
-    color: #5a5870;
+    color: #bbbbbf;
     margin: 0;
 }
 
