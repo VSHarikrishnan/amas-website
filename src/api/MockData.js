@@ -155,55 +155,7 @@ export const MOCK_TEAM = [
     },
 ];
 
-// ============================================================
-// REVIEWS / TESTIMONIALS
-// ============================================================
-export const MOCK_REVIEWS = [
-    {
-        id: 1,
-        name: "Arjun Menon",
-        location: "Kochi, Kerala",
-        avatar: "/assets/images/testimonials/arjun.jpg",
-        rating: 5,
-        text: "An absolutely life-changing experience. The AMAS team made our Himalayan trek both safe and unforgettable. The guides were knowledgeable, caring, and truly passionate about nature.",
-        trekId: "valley-of-flowers",
-        trekTitle: "Valley of Flowers Trek",
-        date: "2024-11",
-    },
-    {
-        id: 2,
-        name: "Priya Nair",
-        location: "Thiruvananthapuram",
-        avatar: "/assets/images/testimonials/priya.jpg",
-        rating: 5,
-        text: "I was a complete beginner and was nervous about rock climbing. The instructors were patient and encouraging. I summited my first wall and cried happy tears at the top!",
-        trekId: "rock-face-challenge",
-        trekTitle: "Rock Face Challenge",
-        date: "2024-10",
-    },
-    {
-        id: 3,
-        name: "Rahul Krishnan",
-        location: "Kozhikode, Kerala",
-        avatar: "/assets/images/testimonials/rahul.jpg",
-        rating: 5,
-        text: "The coastal camping trip was magical. Waking up to the sound of waves, the bonfire nights, the stars — everything was perfectly organized. Already booked for next year!",
-        trekId: "coastal-camping",
-        trekTitle: "Coastal Camping",
-        date: "2024-09",
-    },
-    {
-        id: 4,
-        name: "Sneha Thomas",
-        location: "Thrissur, Kerala",
-        avatar: "/assets/images/testimonials/sneha.jpg",
-        rating: 4,
-        text: "Wonderful team and great organization. The valley crossing during monsoon was a rush of adrenaline I will never forget. Highly recommended for anyone seeking real adventure.",
-        trekId: "coastal-camping",
-        trekTitle: "Monsoon Valley Crossing",
-        date: "2024-08",
-    },
-];
+
 
 // ============================================================
 // EVENTS
@@ -498,6 +450,75 @@ export const MOCK_TEAM_LEGACY = {
         { id: 4, icon: "fa-solid fa-people-roof", value: 100, suffix: "+", label: "Community Events" },
     ],
 };
+
+// ============================================================
+// REVIEWS / TESTIMONIALS  (replace existing MOCK_REVIEWS)
+// ============================================================
+export const MOCK_REVIEWS = [
+    {
+        id: 1,
+        name: "Aakriti Sinha",
+        role: "Trekker",
+        image: "https://randomuser.me/api/portraits/women/44.jpg",
+        rating: 5,
+        date: "2024-03-01",
+        comment: "It was my first trek and I had a lovely experience. The guides were so helpful and the entire team made our trip wonderful. Overall a great experience with AMAS Kerala!",
+    },
+    {
+        id: 2,
+        name: "John Mathew",
+        role: "Backpacker",
+        image: "https://randomuser.me/api/portraits/men/41.jpg",
+        rating: 4,
+        date: "2024-05-12",
+        comment: "Had an incredible time. Perfect guidance and a well-planned itinerary. I would definitely recommend them to anyone looking for a real adventure.",
+    },
+    {
+        id: 3,
+        name: "Priya Sharma",
+        role: "Trekker",
+        image: "https://randomuser.me/api/portraits/women/55.jpg",
+        rating: 5,
+        date: "2024-07-20",
+        comment: "Loved every bit of it. The views, the people, the trek — all unforgettable. Kudos to the team for making it so seamless and safe.",
+    },
+    {
+        id: 4,
+        name: "Karan Joshi",
+        role: "Explorer",
+        image: "https://randomuser.me/api/portraits/men/50.jpg",
+        rating: 5,
+        date: "2024-08-05",
+        comment: "Such a memorable trip! The guides and team were very friendly and experienced. Felt safe the entire time even on the most challenging sections.",
+    },
+    {
+        id: 5,
+        name: "Neha Agarwal",
+        role: "Photographer",
+        image: "https://randomuser.me/api/portraits/women/60.jpg",
+        rating: 4,
+        date: "2024-09-14",
+        comment: "Fantastic arrangements and beautiful trails. The locations were stunning and I got incredible shots. Will definitely join again next season!",
+    },
+    {
+        id: 6,
+        name: "Arjun Menon",
+        role: "First-Timer",
+        image: "https://randomuser.me/api/portraits/men/32.jpg",
+        rating: 5,
+        date: "2024-10-03",
+        comment: "An absolutely life-changing experience. The AMAS team made our Himalayan trek both safe and unforgettable. Truly passionate about nature and adventure.",
+    },
+    {
+        id: 7,
+        name: "Sneha Thomas",
+        role: "Nature Enthusiast",
+        image: "https://randomuser.me/api/portraits/women/68.jpg",
+        rating: 5,
+        date: "2024-11-18",
+        comment: "The valley crossing during monsoon was a rush of adrenaline I will never forget. Everything was perfectly organized. Highly recommended for anyone seeking real adventure.",
+    },
+];
 
 // ============================================================
 // MOCK FUNCTIONS
