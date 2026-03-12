@@ -5,7 +5,7 @@
 // ============================================================
 
 import React, { useState } from 'react';
-import { submitContactForm } from '../../api/mockData';
+import { submitContactForm } from '../../api/MockData';
 import './ContactUs.css';
 
 // ── Contact detail items (static — no backend needed) ────────
