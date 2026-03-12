@@ -1,144 +1,296 @@
+/* src/pages/OfferedActivities/OfferedActivities.css */
+/* ============================================================
+   OFFERED ACTIVITIES — Adventure NGO Design System
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@300;400;500&display=swap');
+
+/* ============================================================
+   SECTION
+   ============================================================ */
 .offered-activities-section {
-    padding: 1rem 1rem;
-    background-color: #f9f9f9;
-    width: 100%;
+    padding: 6rem 2rem 5rem;
+    background: #ffffff;
+    position: relative;
+    overflow: hidden;
     box-sizing: border-box;
-    padding-bottom: 3rem;
 }
 
-.section-heading {
+/* Faint grid texture */
+.offered-activities-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(39, 35, 67, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(39, 35, 67, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+}
+
+/* Dark accent block — top-right corner */
+.offered-activities-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 280px;
+    background: rgba(39, 35, 67, 0.04);
+    clip-path: polygon(100% 0%, 0% 0%, 100% 100%);
+    pointer-events: none;
+}
+
+/* ============================================================
+   SECTION HEADER
+   ============================================================ */
+.activities-header {
     text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #272343;
-    font-family: 'Prompt', sans-serif;
-    font-weight: 700;
+    max-width: 640px;
+    margin: 0 auto 4rem;
+    position: relative;
+    z-index: 1;
 }
 
-/* Responsive dynamic grid layout */
+.activities-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #00b34b;
+    margin-bottom: 1rem;
+}
+
+.activities-eyebrow::before,
+.activities-eyebrow::after {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    background: #00b34b;
+    border-radius: 2px;
+}
+
+.activities-header h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: 0.03em;
+    color: #272343;
+    margin: 0 0 1rem;
+}
+
+.activities-header h2 span {
+    color: #00b34b;
+}
+
+.activities-header p {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.7;
+    color: #5a5870;
+    margin: 0;
+}
+
+/* ============================================================
+   GRID
+   ============================================================ */
 .activities-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    max-width: 1300px;
-    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
     margin: 0 auto;
-    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
 }
 
-/* Activity card styling */
+/* ============================================================
+   CARD
+   ============================================================ */
 .activity-card {
-    background-color: #ffffff;
-    padding: 2rem 1.5rem 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease;
+    background: #ffffff;
+    border: 1px solid rgba(39, 35, 67, 0.08);
+    border-radius: 10px;
+    padding: 2rem 1.75rem 1.75rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: default;
+}
+
+/* Green bottom border that grows on hover */
+.activity-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #00b34b;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .activity-card:hover {
     transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(39, 35, 67, 0.12);
+    border-color: rgba(0, 179, 75, 0.2);
 }
 
-/* Icon + Title horizontal */
-.icon-title-line {
+.activity-card:hover::after {
+    transform: scaleX(1);
+}
+
+/* Card number watermark */
+.activity-card-number {
+    position: absolute;
+    top: 1rem;
+    right: 1.25rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: rgba(39, 35, 67, 0.05);
+    letter-spacing: 0.02em;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* ── Icon ── */
+.activity-icon-wrap {
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    background: rgba(0, 179, 75, 0.08);
     display: flex;
     align-items: center;
-    gap: 2rem;
-    margin: 1rem 0;
-    width: 100%;
-    position: relative;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    transition: background 0.3s ease;
+    flex-shrink: 0;
 }
 
-/* Icon styling */
-.icon-title-line i {
-    font-size: 2rem;
+.activity-card:hover .activity-icon-wrap {
+    background: #00b34b;
+}
+
+.activity-icon-wrap i {
+    font-size: 3rem;
     color: #00b34b;
-    min-width: 4rem;
-    text-align: center;
-    margin-bottom: .5rem;
+    transition: color 0.3s ease;
 }
 
-/* Title text */
-.icon-title-line h5 {
+.activity-card:hover .activity-icon-wrap i {
+    color: #ffffff;
+}
+
+/* ── Title ── */
+.activity-title {
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: 1.25rem;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     color: #272343;
-    font-family: 'Prompt', sans-serif;
+    margin: 0 0 0.5rem;
+    line-height: 1.2;
+}
+
+/* ── Divider ── */
+.activity-divider {
+    width: 32px;
+    height: 2px;
+    background: #00b34b;
+    border-radius: 2px;
+    margin-bottom: 0.85rem;
+    transition: width 0.3s ease;
+}
+
+.activity-card:hover .activity-divider {
+    width: 56px;
+}
+
+/* ── Subtitle ── */
+.activity-subtitle {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 400;
+    line-height: 1.65;
+    color: #6b6885;
     margin: 0;
     flex-grow: 1;
-    text-align: left;
-    line-height: 1.4;
 }
 
-/* Combined underline directly under icon-title block */
-.icon-title-line::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    left: 0;
-    height: 4px;
-    width: 100%;
-    background: linear-gradient(to right, #00b34b 60px, #ccc 60px);
-    border-radius: 4px;
-}
-
-/* Subtitle text */
-.subtitle {
-    font-size: 1rem;
-    font-weight: 200;
-    font-family: 'Inter', sans-serif;
-    color: #555;
-    line-height: 1.6;
-    margin-top: 0.5rem;
-    margin-bottom: 0;
-    padding-right: 0.5rem;
-}
-
-.events-heading {
-    justify-self: center;
-    font-size: 2rem;
-    font-weight: 800;
-    line-height: 1.3;
+/* ── Tag ── */
+.activity-tag {
+    display: inline-block;
+    margin-top: 1.25rem;
+    padding: 3px 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     color: #272343;
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    text-align: center;
-    padding-bottom: 1rem;
+    background: rgba(39, 35, 67, 0.06);
+    border-radius: 20px;
+    transition: all 0.3s ease;
 }
 
-.events-heading .thin {
-    font-weight: 400;
-    color: #3e3b85;
-    margin: 0;
-    text-align: center;
+.activity-card:hover .activity-tag {
+    background: rgba(0, 179, 75, 0.1);
+    color: #009140;
 }
 
-/* Mobile tweaks */
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+    .activities-grid {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+}
+
 @media (max-width: 768px) {
-    .section-heading {
-        font-size: 2rem;
+    .offered-activities-section {
+        padding: 4rem 1.25rem 3rem;
     }
 
-    .icon-title-line i {
-        font-size: 1.8rem;
-    }
-
-    .icon-title-line h5 {
-        font-size: 1.1rem;
-    }
-
-    .subtitle {
-        font-size: 0.95rem;
+    .activities-header {
+        margin-bottom: 2.5rem;
     }
 
     .activities-grid {
-        gap: 1.5rem;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
     }
 
     .activity-card {
-        padding: 1.5rem;
+        padding: 1.5rem 1.25rem;
+    }
+
+    .activity-icon-wrap {
+        width: 44px;
+        height: 44px;
+    }
+
+    .activity-icon-wrap i {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .activities-grid {
+        grid-template-columns: 1fr;
     }
 }

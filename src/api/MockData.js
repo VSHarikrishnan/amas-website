@@ -404,6 +404,81 @@ export const MOCK_HOME = {
     ],
 };
 
+// ============================================================
+// OFFERED ACTIVITIES
+// ============================================================
+export const MOCK_OFFERED_ACTIVITIES = {
+    header: {
+        eyebrow: "What We Offer",
+        title: "Exciting <span>Adventures</span>",
+        subtitle: "We are experts in offering thrilling, safe, and unforgettable adventure experiences for all skill levels.",
+    },
+    activities: [
+        {
+            id: 1,
+            title: "Mountaineering",
+            subtitle: "Everything you need to scale mountains – rock climbing, rappelling and more.",
+            icon: "fa-solid fa-mountain",
+            tag: "All Levels",
+        },
+        {
+            id: 2,
+            title: "Water Sports",
+            subtitle: "From banana boats to jet skis – soaked in fun and adventure.",
+            icon: "fa-solid fa-sailboat",
+            tag: "Beginner Friendly",
+        },
+        {
+            id: 3,
+            title: "Land Activities",
+            subtitle: "Nature hikes and thrilling rope adventures await in the wild.",
+            icon: "fa-solid fa-earth-europe",
+            tag: "All Levels",
+        },
+        {
+            id: 4,
+            title: "Camping",
+            subtitle: "Campfires, stories, and sunrises – soulfully unforgettable nights outdoors.",
+            icon: "fas fa-campground",
+            tag: "Family Friendly",
+        },
+        {
+            id: 5,
+            title: "Private Events",
+            subtitle: "Team building to student programs – tailored adventures just for your group.",
+            icon: "fa-solid fa-people-roof",
+            tag: "Customisable",
+        },
+        {
+            id: 6,
+            title: "Training Programs",
+            subtitle: "Sharpen your skills with structured training from seasoned experts.",
+            icon: "fa-solid fa-compass",
+            tag: "Certified",
+        },
+        {
+            id: 7,
+            title: "Valley Crossing",
+            subtitle: "Thrilling rope-based crossings over scenic gorges and forest valleys.",
+            icon: "fa-solid fa-route",
+            tag: "Medium",
+        },
+        {
+            id: 8,
+            title: "Kayaking",
+            subtitle: "Paddle through backwaters and rivers in a peaceful yet exhilarating experience.",
+            icon: "fa-solid fa-water",
+            tag: "Beginner Friendly",
+        },
+        {
+            id: 9,
+            title: "Nature Walks",
+            subtitle: "Guided ecology walks through forests and wildlife corridors with expert naturalists.",
+            icon: "fa-solid fa-leaf",
+            tag: "Easy",
+        },
+    ],
+};
 
 
 // ============================================================
@@ -429,3 +504,4 @@ export async function submitContactForm(data) {
 }
 export async function fetchLandingData() { return MOCK_LANDING; }
 export async function fetchHomeData() { return MOCK_HOME; }
+export async function fetchOfferedActivities() { return MOCK_OFFERED_ACTIVITIES; }

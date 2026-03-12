@@ -17,7 +17,7 @@ export const BASE_URL =
 
 // ── All endpoint paths in one place ──────────────────────────
 export const ENDPOINTS = {
-    
+
     GET_HOME: "/home/get_home",
 
     // Treks
@@ -48,7 +48,9 @@ export const ENDPOINTS = {
     POST_CONTACT_FORM: "/contact/submit",
     GET_LANDING: "/landing/get_landing",
 
-  
+    GET_OFFERED_ACTIVITIES: "/activities/get_offered_activities",
+
+
 };
 
 // HOME PAGE
@@ -147,4 +149,9 @@ export async function submitContactForm(formData) {
 // ============================================================
 export async function fetchLandingData() {
     return apiRequest(ENDPOINTS.GET_LANDING);
+}
+
+// OFFERED ACTIVITIES
+export async function fetchOfferedActivities() {
+    return apiRequest(ENDPOINTS.GET_OFFERED_ACTIVITIES);
 }
