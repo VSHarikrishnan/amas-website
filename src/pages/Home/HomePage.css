@@ -1,192 +1,341 @@
+/* src/pages/Home/HomePage.css */
+/* ============================================================
+   HOME SECTION — Adventure NGO Design System
+   Colors: #272343 primary | #00b34b accent | #f5f4f8 bg
+   Fonts: Bebas Neue (display) | Barlow Condensed (labels) | Barlow (body)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@300;400;500&display=swap');
+
+/* ============================================================
+   SECTION WRAPPER
+   ============================================================ */
 .home-section {
-    background: linear-gradient(to right, #f5f5f5, #ffffff);
-    padding: 2rem 0;
+    background: #f5f4f8;
+    padding: 7rem 0 5rem;
     overflow-x: hidden;
+    position: relative;
 }
 
+/* Subtle diagonal background accent */
+.home-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(39, 35, 67, 0.03) 0%, rgba(0, 179, 75, 0.04) 100%);
+    clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+    pointer-events: none;
+}
+
+/* ============================================================
+   CONTAINER
+   ============================================================ */
 .home-container {
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
-    align-items: flex-start;
-    /* ⬅️ This changed from center to flex-start */
-    flex-wrap: wrap;
-    min-height: 100vh;
+    gap: 4rem;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0rem 2rem;
-    gap: 2rem;
+    padding: 0 2rem;
     box-sizing: border-box;
 }
 
-/* Text content box */
+/* ============================================================
+   LEFT — TEXT CONTENT
+   ============================================================ */
 .home-content-box {
-    flex: 1 1 48%;
+    flex: 1 1 45%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-right: 1rem;
+    gap: 0;
 }
 
-.home-content-box h2 {
-    font-size: 2.8rem;
+/* Eyebrow label */
+.home-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
     font-weight: 700;
-    line-height: 1.3;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #00b34b;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeInUp 0.6s 0.1s ease forwards;
+}
+
+.home-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    background: #00b34b;
+    border-radius: 2px;
+}
+
+/* Main heading */
+.home-content-box h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: 0.02em;
     color: #272343;
-    font-family: 'Prompt', sans-serif;
-    margin-bottom: 1.5rem;
-    animation: fadeInUp 1s ease;
+    margin: 0 0 1.5rem;
+    opacity: 0;
+    animation: fadeInUp 0.6s 0.25s ease forwards;
 }
 
+.home-content-box h2 span {
+    color: #00b34b;
+}
+
+/* Body paragraphs */
 .home-content-box p {
-    font-size: 1.15rem;
-    line-height: 1.8;
-    color: #484848;
-    margin: 1rem 0;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.75;
+    color: #5a5870;
+    margin: 0 0 0.85rem;
+    opacity: 0;
+    animation: fadeInUp 0.6s 0.4s ease forwards;
 }
 
-/* Experience Box */
+/* ── Experience / counter box ── */
 .experience-box {
     display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    margin: 1.5rem 0;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+    align-items: center;
+    gap: 0;
+    margin: 1.75rem 0 2rem;
+    padding: 1.25rem 1.5rem;
+    background: #272343;
+    border-radius: 8px;
+    width: fit-content;
+    opacity: 0;
+    animation: fadeInUp 0.6s 0.55s ease forwards;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Green left border accent */
+.experience-box::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #00b34b;
+    border-radius: 8px 0 0 8px;
 }
 
 .experience-box .number {
-    font-size: 4rem;
-    font-weight: 800;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.8rem;
+    font-weight: 400;
     color: #00b34b;
-    font-family: 'Segoe UI', sans-serif;
+    line-height: 1;
     margin: 0;
-    line-height: 1;
+    letter-spacing: 0.02em;
 }
 
-.experience-box span {
-    font-size: 4rem;
-    font-weight: 500;
+.experience-box .number span {
+    font-size: 3.8rem;
     color: #00b34b;
-    line-height: 1;
+    font-family: 'Bebas Neue', sans-serif;
 }
 
-.experience-box h6 {
-    font-size: 1.75rem;
-    color: #272343;
-    font-family: 'Prompt', sans-serif;
+.experience-box .exp-label {
+    display: flex;
+    flex-direction: column;
     padding-left: 1rem;
-    margin: 0;
-    font-weight: 600;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-    animation: zoomPulse 2s ease-in-out infinite;
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+    margin-left: 1rem;
 }
 
-/* Image Section */
+.experience-box .exp-label strong {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+.experience-box .exp-label span {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+}
+
+/* ── CTA button ── */
+.home-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.8rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: #00b34b;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    width: fit-content;
+    opacity: 0;
+    animation: fadeInUp 0.6s 0.7s ease forwards;
+}
+
+.home-cta:hover {
+    background: #009140;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 179, 75, 0.35);
+}
+
+.home-cta-arrow {
+    transition: transform 0.2s ease;
+}
+
+.home-cta:hover .home-cta-arrow {
+    transform: translateX(4px);
+}
+
+/* ============================================================
+   RIGHT — IMAGE GROUP
+   ============================================================ */
 .image-group {
     flex: 1 1 48%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 10px;
+    align-items: stretch;
+    gap: 12px;
     position: relative;
+    opacity: 0;
+    animation: fadeInUp 0.7s 0.3s ease forwards;
 }
 
+/* Individual image */
 .home-img-half {
-    width: 48%;
-    aspect-ratio: 1 / 1.6;
+    width: calc(50% - 6px);
+    aspect-ratio: 2 / 3;
     object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
+    border-radius: 10px;
+    box-shadow: 0 12px 32px rgba(39, 35, 67, 0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    display: block;
+}
+
+/* Offset the two images slightly for visual depth */
+.home-img-half:first-child {
+    margin-top: 2rem;
+}
+
+.home-img-half:last-child {
+    margin-bottom: 2rem;
 }
 
 .home-img-half:hover {
-    transform: scale(1.03);
+    transform: scale(1.02) translateY(-4px);
+    box-shadow: 0 20px 48px rgba(39, 35, 67, 0.28);
 }
 
-/* Center Icon */
+/* Fade transition between slides */
+.home-img-half.fade-image {
+    animation: imgFadeIn 0.6s ease;
+}
+
+@keyframes imgFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(1.03);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ── Centre icon badge ── */
 .icon-box.center-icon {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     background: #272343;
-    padding: 1.2rem;
+    border: 3px solid #f5f4f8;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
-    color: #fff;
-    font-size: 2rem;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00b34b;
+    font-size: 1.4rem;
+    box-shadow: 0 8px 24px rgba(39, 35, 67, 0.4);
     z-index: 2;
+    transition: all 0.3s ease;
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .home-container {
-        flex-direction: column;
-        align-items: stretch;
-        height: auto;
-        padding: 1rem;
-    }
-
-    .home-content-box,
-    .image-group {
-        width: 100%;
-        flex: 1 1 100%;
-        padding-right: 0;
-    }
-
-    .home-content-box h2 {
-        font-size: 2rem;
-        text-align: center;
-        margin: 0;
-    }
-
-    .home-content-box p {
-        font-size: 1rem;
-        text-align: center;
-        margin: .2rem 0;
-    }
-
-    .experience-box {
-        justify-content: flex-start;
-        margin: .2rem 0;
-    }
-
-    .experience-box .number,
-    .experience-box span {
-        font-size: 4rem;
-    }
-
-    .experience-box h6 {
-        font-size: 1.6rem;
-    }
-
-    .image-group {
-        justify-content: center;
-        margin-top: 1rem;
-        gap: 4%;
-    }
-
-    .home-img-half {
-        width: 46%;
-        aspect-ratio: 1 / 1.4;
-        border-radius: 10px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    .icon-box.center-icon {
-        font-size: 1.5rem;
-        padding: 0.8rem;
-    }
+.icon-box.center-icon:hover {
+    background: #00b34b;
+    color: #ffffff;
+    transform: translate(-50%, -50%) scale(1.1);
 }
 
-/* Animation Effects */
+/* Slide counter pill */
+.image-slide-counter {
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    z-index: 3;
+}
+
+.image-slide-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(39, 35, 67, 0.25);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+}
+
+.image-slide-dot.active {
+    width: 18px;
+    border-radius: 3px;
+    background: #00b34b;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(24px);
     }
 
     to {
@@ -195,16 +344,75 @@
     }
 }
 
-@keyframes zoomPulse {
-    0% {
-        transform: scale(1);
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+    .home-container {
+        gap: 2.5rem;
     }
 
-    50% {
-        transform: scale(1.05);
+    .home-content-box h2 {
+        font-size: clamp(2rem, 6vw, 2.8rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .home-section {
+        padding: 5rem 0 3rem;
     }
 
-    100% {
-        transform: scale(1);
+    .home-section::before {
+        display: none;
+    }
+
+    .home-container {
+        flex-direction: column;
+        padding: 0 1.25rem;
+        gap: 2rem;
+    }
+
+    .home-content-box,
+    .image-group {
+        flex: 1 1 100%;
+        width: 100%;
+    }
+
+    .home-content-box {
+        align-items: flex-start;
+    }
+
+    .home-content-box h2 {
+        font-size: 2.6rem;
+    }
+
+    .experience-box {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .image-group {
+        gap: 8px;
+    }
+
+    .home-img-half:first-child {
+        margin-top: 1rem;
+    }
+
+    .home-img-half:last-child {
+        margin-bottom: 1rem;
+    }
+
+    .icon-box.center-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-img-half {
+        aspect-ratio: 2 / 2.5;
+        border-radius: 8px;
     }
 }

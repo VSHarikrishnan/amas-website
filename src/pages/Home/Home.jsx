@@ -1,76 +1,114 @@
+// src/pages/Home/HomePage.jsx
+// ============================================================
+// HOME SECTION — Adventure NGO
+// Switch import to '../../api/api' when backend is ready.
+// ============================================================
+
 import React, { useEffect, useState } from 'react';
-import './HomePage.css';
-import homeData from './HomeData'; // Assuming homeData is an array of objects with left_image, right_image, and icon properties
 import CountUp from 'react-countup';
+import { Link as RouterLink } from 'react-router-dom';
+import { fetchHomeData } from '../../api/MockData';
+import './HomePage.css';
 
 const HomePage = () => {
-    // const [count, setCount] = useState(0);
+    const [data, setData] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
-    let years_of_service = (new Date().getFullYear()) - 2006;
-    // // Counter animation
-    // useEffect(() => {
-    //     let start = 0;
-    //     console.log("Current Year:", new Date().getFullYear());
-    //     let end = (new Date().getFullYear()) - 2003;
-    //     const duration = 4000;
-    //     const stepTime = Math.floor(duration / end);
-    //     const timer = setInterval(() => {
-    //         start += 1;
-    //         setCount(start);
-    //         console.log(start);
-    //         if (start === end) clearInterval(timer);
-    //     }, stepTime);
-    //     return () => clearInterval(timer);
-    // }, []);
 
-    // Image rotation
+    // ── Load data ─────────────────────────────────────────────
     useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentIndex(prev => (prev + 1) % homeData.length);
-        }, 5000); // ⏱ Change image every 5 seconds
-
-        return () => clearInterval(interval); // Clean up
+        fetchHomeData()
+            .then(setData)
+            .catch((err) => console.error('[HomePage] Data load failed:', err));
     }, []);
 
-    const selectedItem = homeData[currentIndex];
+    // ── Auto-rotate image pair every 5 s ──────────────────────
+    useEffect(() => {
+        if (!data) return;
+        const interval = setInterval(() => {
+            setCurrentIndex((prev) => (prev + 1) % data.slides.length);
+        }, 5000);
+        return () => clearInterval(interval);
+    }, [data]);
+
+    if (!data) return null;
+
+    const { heading, eyebrow, paragraphs, cta, slides } = data;
+    const yearsOfService = new Date().getFullYear() - data.foundedYear;
+    const selected = slides[currentIndex];
 
     return (
         <section className="home-section">
             <div className="home-container">
+
+                {/* ── LEFT: Text content ── */}
                 <div className="home-content-box">
-                    <h2>Academy for Mountaineering and Adventure Sports</h2>
-                    <p>
-                        Since 2006, AMAS Kerala has been providing unparalleled programs
-                        and training in adventure sports.
-                    </p>
-                    <p>
-                        We guarantee extremely safe, adventure filled, memorable days
-                        with your friends or like spirited adventurers!
-                    </p>
+
+                    <span className="home-eyebrow">{eyebrow}</span>
+
+                    <h2
+                        dangerouslySetInnerHTML={{
+                            // Allows wrapping a keyword in <span> from data for accent colour
+                            __html: heading,
+                        }}
+                    />
+
+                    {paragraphs.map((text, i) => (
+                        <p key={i}>{text}</p>
+                    ))}
+
+                    {/* Counter */}
                     <div className="experience-box">
-                        <h2 className="number"><CountUp end={years_of_service} duration={3} /><span>+</span></h2>
-                        <h6 className="highlight-zoom">Safe & Thrilling Years</h6>
+                        <h2 className="number">
+                            <CountUp end={yearsOfService} duration={8} />
+                            <span>+</span>
+                        </h2>
+                        <div className="exp-label">
+                            <strong>Years of Service</strong>
+                            <span>Safe &amp; Thrilling Adventures</span>
+                        </div>
                     </div>
+
+                    {/* CTA */}
+                    <RouterLink to={cta.href} className="home-cta">
+                        {cta.label}
+                        <span className="home-cta-arrow">→</span>
+                    </RouterLink>
                 </div>
 
+                {/* ── RIGHT: Image pair ── */}
                 <div className="image-group">
                     <img
-                        key={selectedItem.left_image}
-                        src={selectedItem.left_image}
-                        alt="Left Adventure"
-                        className="home-img-half fade-image"
-                    />
-                    <div className="icon-box center-icon">
-                        <i className={selectedItem.icon}></i>
-                    </div>
-                    <img
-                        key={selectedItem.right_image}
-                        src={selectedItem.right_image}
-                        alt="Right Adventure"
+                        key={`left-${selected.id}`}
+                        src={selected.leftImage}
+                        alt={selected.leftAlt}
                         className="home-img-half fade-image"
                     />
 
+                    {/* Centre icon badge */}
+                    <div className="icon-box center-icon">
+                        <i className={selected.icon} />
+                    </div>
+
+                    <img
+                        key={`right-${selected.id}`}
+                        src={selected.rightImage}
+                        alt={selected.rightAlt}
+                        className="home-img-half fade-image"
+                    />
+
+                    {/* Dot indicators */}
+                    <div className="image-slide-counter">
+                        {slides.map((_, i) => (
+                            <button
+                                key={i}
+                                className={`image-slide-dot${currentIndex === i ? ' active' : ''}`}
+                                onClick={() => setCurrentIndex(i)}
+                                aria-label={`View slide ${i + 1}`}
+                            />
+                        ))}
+                    </div>
                 </div>
+
             </div>
         </section>
     );
